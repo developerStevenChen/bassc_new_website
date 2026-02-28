@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'config.health_middleware.HealthEarlyResponseMiddleware',  # 最先：/ 与 /api/health/ 直接 200，不碰 DB
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
