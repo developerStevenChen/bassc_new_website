@@ -57,7 +57,10 @@ VITE_API_BASE_URL=https://basscnewwebsite-production.up.railway.app
 
 6. **数据库**  
    若使用 MySQL（`USE_MYSQL=1`），请配置好 `DB_HOST`、`DB_NAME`、`DB_USER`、`DB_PASSWORD` 等，并执行 `python manage.py migrate`（可在 Deploy 前或 Shell 里执行）。  
-   未配置数据库时保持默认 SQLite 即可。
+   **未配置时使用 SQLite**：首次部署**必须**在 Railway 后端服务里执行一次：
+   - `python manage.py migrate`（建表）
+   - `python manage.py createsuperuser`（创建可登录前端的超级用户）
+   否则登录接口会返回 500（表或用户不存在）。可在该服务的 **Shell** 或 **Deploy 前命令**中执行。
 
 7. **依赖**  
    `requirements.txt` 已包含 `gunicorn`；构建命令见 `railway.toml` 或使用 `pip install -r requirements.txt`。

@@ -275,20 +275,27 @@ def homepage(request):
 @permission_classes([AllowAny])
 def auth_login(request):
     """登录：username, password -> 返回 token，前端请求头带 Authorization: Token <token>"""
-    username = request.data.get('username') or request.POST.get('username')
-    password = request.data.get('password') or request.POST.get('password')
-    if not username or not password:
-        return Response({'error': '需要 username 和 password'}, status=status.HTTP_400_BAD_REQUEST)
-    user = authenticate(request, username=username, password=password)
-    if user is None:
-        return Response({'error': '用户名或密码错误'}, status=status.HTTP_401_UNAUTHORIZED)
-    if not user.is_superuser and not user.is_staff:
-        return Response({'error': '仅超级用户或管理员可登录'}, status=status.HTTP_403_FORBIDDEN)
-    token, _ = Token.objects.get_or_create(user=user)
-    return Response({
-        'token': token.key,
-        'user': {'id': user.id, 'username': user.username, 'is_superuser': user.is_superuser, 'is_staff': user.is_staff},
-    })
+    try:
+        username = request.data.get('username') or request.POST.get('username')
+        password = request.data.get('password') or request.POST.get('password')
+        if not username or not password:
+            return Response({'error': '需要 username 和 password'}, status=status.HTTP_400_BAD_REQUEST)
+        user = authenticate(request, username=username, password=password)
+        if user is None:
+            return Response({'error': '用户名或密码错误'}, status=status.HTTP_401_UNAUTHORIZED)
+        if not user.is_superuser and not user.is_staff:
+            return Response({'error': '仅超级用户或管理员可登录'}, status=status.HTTP_403_FORBIDDEN)
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user': {'id': user.id, 'username': user.username, 'is_superuser': user.is_superuser, 'is_staff': user.is_staff},
+        })
+    except Exception as e:
+        return Response({
+            'error': '登录处理异常',
+            'detail': '请确认后端已执行 migrate 并已创建超级用户（python manage.py createsuperuser）。',
+            'debug': str(e) if __debug__ else None,
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])

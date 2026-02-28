@@ -224,7 +224,7 @@ export async function login(username, password) {
     throw new Error('服务器返回了 HTML 而非 JSON，请确认后端已启动（http://127.0.0.1:8000）且 API 地址正确');
   }
   const data = JSON.parse(text);
-  if (!res.ok) throw new Error(data.error || '登录失败');
+  if (!res.ok) throw new Error(data.detail || data.error || '登录失败');
   saveTokenToStorage(data.token || '');
   return data;
 }
