@@ -34,10 +34,16 @@ VITE_API_BASE_URL=https://basscbackend-production.up.railway.app
 
 若出现 502，在 **Networking** 里确认 **Target Port** 与 Railway 提供的 `PORT` 一致（通常 8080），或留空自动检测。
 
-## 6. Node 版本与构建 EBUSY
+## 6. 若 Nixpacks 报 EBUSY（node_modules/.cache）
 
-- 前端依赖需要 **Node 20**，仓库内已加 `.nvmrc`（内容为 `20`）和 `package.json` 的 `engines.node`。若构建仍用 Node 18，可在该服务 **Variables** 里加 **NIXPACKS_NODE_VERSION** = **20**。
-- 若出现 `EBUSY: resource busy or locked, rmdir node_modules/.cache`，已通过 webpack 的 `cacheDirectory: '/tmp/webpack-cache'` 规避。
+Nixpacks 会把缓存挂载到 `node_modules/.cache`，可能导致 `npm ci` 报 EBUSY。**改用 Docker 构建即可规避**：
+
+- 在该前端服务 **Settings** → **Build** → **Builder** 选 **Dockerfile**（仓库内 `BasscWebsite/Dockerfile` 已配好，Node 20 + npm ci + build + serve）。
+- 保存后重新部署。
+
+## 7. Node 版本
+
+- 使用 Dockerfile 时已固定 Node 20。若仍用 Nixpacks，可在 **Variables** 里加 **NIXPACKS_NODE_VERSION** = **20**。
 
 ---
 
