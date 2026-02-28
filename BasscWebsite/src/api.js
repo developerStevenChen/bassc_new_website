@@ -1,11 +1,22 @@
 /**
- * API 基础地址，必须指向 Django 的 /api 根（例如 http://localhost:8000/api）。
- * 若只填了主机（如 http://localhost:8000），会补上 /api，避免请求打到 /auth/csrf/ 导致 404 HTML。
+ * API 基础地址，必须指向 Django 的 /api 根。
+ * - 构建时设置了 VITE_API_BASE_URL 则用该值；
+ * - 否则：本地开发用 http://localhost:8000，生产环境（非 localhost）用后端 Railway 地址。
  */
 const _raw = import.meta.env.VITE_API_BASE_URL || '';
-const _origin = (_raw.startsWith('http://') || _raw.startsWith('https://'))
-  ? _raw.replace(/\/api\/?$/, '').replace(/\/$/, '')
-  : 'http://localhost:8000';
+let _origin;
+if (_raw.startsWith('http://') || _raw.startsWith('https://')) {
+  _origin = _raw.replace(/\/api\/?$/, '').replace(/\/$/, '');
+} else if (
+  typeof window !== 'undefined' &&
+  window.location &&
+  window.location.hostname !== 'localhost' &&
+  window.location.hostname !== '127.0.0.1'
+) {
+  _origin = 'https://basscnewwebsite-production.up.railway.app';
+} else {
+  _origin = 'http://localhost:8000';
+}
 export const API_BASE = _origin + '/api';
 
 /** 登录后保存的 Token，请求头带 Authorization: Token <token>，无需 CSRF */
