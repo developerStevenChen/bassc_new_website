@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { defaultHomepage } from '../data';
 
-export default function IntroductionCarousel({ introductions: propIntros }) {
+export default function IntroductionCarousel({ introductions: propIntros, onTryOutClick }) {
   const introductions = propIntros?.length ? propIntros : defaultHomepage.introductions;
   const [current, setCurrent] = useState(0);
 
@@ -29,7 +29,26 @@ export default function IntroductionCarousel({ introductions: propIntros }) {
             </div>
             <div className="intro-text-wrap">
               <h3 className="intro-title">{item.title}</h3>
-              <p className="intro-text">{item.text}</p>
+              <div className="intro-text">
+                {(item.text || '')
+                  .split(/\n\n+/)
+                  .map((para) => para.trim())
+                  .filter(Boolean)
+                  .map((para, i) => (
+                    <p key={i} className="intro-text-p">
+                      {para}
+                    </p>
+                  ))}
+              </div>
+              {onTryOutClick && (
+                <button
+                  type="button"
+                  className="intro-tryout-btn"
+                  onClick={onTryOutClick}
+                >
+                  Try out
+                </button>
+              )}
             </div>
           </div>
           <button

@@ -9,11 +9,62 @@ const _origin = (_raw.startsWith('http://') || _raw.startsWith('https://'))
 export const API_BASE = _origin + '/api';
 
 /** 登录后保存的 Token，请求头带 Authorization: Token <token>，无需 CSRF */
+const TOKEN_KEY = 'bassc_admin_token';
+const TOKEN_EXP_KEY = 'bassc_admin_token_exp';
+// 2 小时
+const TOKEN_TTL_MS = 2 * 60 * 60 * 1000;
+
 let authToken = '';
+
+function clearStoredToken() {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.removeItem(TOKEN_KEY);
+      window.localStorage.removeItem(TOKEN_EXP_KEY);
+    }
+  } catch {
+    // ignore
+  }
+  authToken = '';
+}
+
+function loadTokenFromStorage() {
+  try {
+    if (typeof window === 'undefined' || !window.localStorage) return '';
+    const token = window.localStorage.getItem(TOKEN_KEY) || '';
+    const expRaw = window.localStorage.getItem(TOKEN_EXP_KEY);
+    const exp = expRaw ? Number(expRaw) : 0;
+    if (!token || !exp) {
+      return '';
+    }
+    if (Date.now() > exp) {
+      clearStoredToken();
+      return '';
+    }
+    return token;
+  } catch {
+    return '';
+  }
+}
+
+function saveTokenToStorage(token) {
+  authToken = token || '';
+  try {
+    if (typeof window !== 'undefined' && window.localStorage && token) {
+      const exp = Date.now() + TOKEN_TTL_MS;
+      window.localStorage.setItem(TOKEN_KEY, token);
+      window.localStorage.setItem(TOKEN_EXP_KEY, String(exp));
+    }
+  } catch {
+    // ignore
+  }
+}
 
 function authHeaders() {
   const h = {};
-  if (authToken) h['Authorization'] = `Token ${authToken}`;
+  const token = loadTokenFromStorage();
+  authToken = token;
+  if (token) h['Authorization'] = `Token ${token}`;
   return h;
 }
 
@@ -37,14 +88,19 @@ export async function fetchHomepage() {
   const rawHomePagePic = data.homePagePic ?? data.home_page_pic ?? [];
   const rawBoards = data.boards ?? [];
   const rawIntroductions = data.introductions ?? [];
+  const rawPathway = data.pathway ?? null;
+  const rawClasses = data.classes ?? [];
   const rawNewsList = data.news ?? data.news_list ?? [];
   const rawNavItems = data.navItems ?? data.nav_items ?? [];
   // 统一图片字段：后端可能返回 image_url，前端统一用 image
   const normImage = (item) => (item ? { ...item, image: item.image ?? item.image_url ?? '' } : item);
+  const pathway = rawPathway ? { ...rawPathway, image: rawPathway.image ?? '' } : null;
   return {
     homePagePic: rawHomePagePic.map(normImage),
     boards: rawBoards.map(normImage),
     introductions: rawIntroductions.map(normImage),
+    pathway,
+    classes: Array.isArray(rawClasses) ? rawClasses : [],
     newsList: rawNewsList.map((n) => (n ? { ...n, primPic: n.primPic ?? n.prim_pic ?? '', images: (n.images || []).map((img) => (typeof img === 'string' ? img : img?.image_url ?? img)) } : n)),
     navItems: rawNavItems,
   };
@@ -66,6 +122,84 @@ export async function fetchCourses() {
   return Array.isArray(data) ? data : (data.results || []);
 }
 
+/** Get list of class sessions (for class schedule) */
+export async function fetchClasses() {
+  const res = await fetch(`${API_BASE}/classes/`);
+  if (!res.ok) throw new Error('Classes list failed');
+  const data = await res.json();
+  return Array.isArray(data) ? data : (data.results || []);
+}
+
+/** Get list of athletes (for /athlete page) */
+export async function fetchAthletes() {
+  const res = await fetch(`${API_BASE}/athletes/`);
+  if (!res.ok) throw new Error('Athletes list failed');
+  const data = await res.json();
+  return Array.isArray(data) ? data : (data.results || []);
+}
+
+/** Get list of coaches (for /coach page) */
+export async function fetchCoaches() {
+  const res = await fetch(`${API_BASE}/coaches/`);
+  if (!res.ok) throw new Error('Coaches list failed');
+  const data = await res.json();
+  return Array.isArray(data) ? data : (data.results || []);
+}
+
+/** Get list of events (for /event page) */
+export async function fetchEvents() {
+  const res = await fetch(`${API_BASE}/events/`);
+  if (!res.ok) throw new Error('Events list failed');
+  const data = await res.json();
+  return Array.isArray(data) ? data : (data.results || []);
+}
+
+/** Get list of awards (for /award page) */
+export async function fetchAwards() {
+  const res = await fetch(`${API_BASE}/awards/`);
+  if (!res.ok) throw new Error('Awards list failed');
+  const data = await res.json();
+  return Array.isArray(data) ? data : (data.results || []);
+}
+
+/** Get site contact info (single record, for Contact page) */
+export async function fetchContactInfo() {
+  const res = await fetch(`${API_BASE}/contactinfo/`);
+  if (!res.ok) return null;
+  const data = await res.json();
+  const list = Array.isArray(data) ? data : (data.results || []);
+  return list[0] || null;
+}
+
+// ---------- Superuser 管理 admin 账号 ----------
+
+export async function listAdmins() {
+  const res = await authFetch(`${API_BASE}/auth/admins/`);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || '获取 admin 列表失败');
+  return data.admins || [];
+}
+
+export async function createAdmin(username, password) {
+  const res = await authFetch(`${API_BASE}/auth/admins/`, {
+    method: 'POST',
+    body: JSON.stringify({ username, password }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || '创建 admin 失败');
+  return data;
+}
+
+export async function deactivateAdmin(id) {
+  const res = await authFetch(`${API_BASE}/auth/admins/${id}/deactivate/`, {
+    method: 'POST',
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || '注销 admin 失败');
+  }
+}
+
 // ---------- Dashboard 认证（Token，无 CSRF） ----------
 export async function login(username, password) {
   const url = `${API_BASE}/auth/login/`;
@@ -80,13 +214,13 @@ export async function login(username, password) {
   }
   const data = JSON.parse(text);
   if (!res.ok) throw new Error(data.error || '登录失败');
-  authToken = data.token || '';
+  saveTokenToStorage(data.token || '');
   return data;
 }
 
 export async function logout() {
   await authFetch(`${API_BASE}/auth/logout/`, { method: 'POST' });
-  authToken = '';
+  clearStoredToken();
 }
 
 export async function fetchMe() {
@@ -94,6 +228,25 @@ export async function fetchMe() {
   if (res.status === 401) return null;
   if (!res.ok) throw new Error('获取用户失败');
   return res.json();
+}
+
+// ---------- Get Start 获客（公开提交，无需登录） ----------
+export async function submitIntentClient(data) {
+  const res = await fetch(`${API_BASE}/intentclients/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      grade: data.grade?.trim() || '',
+      student_name: data.student_name?.trim() || '',
+      age: data.age ? Number(data.age) : null,
+      phone: data.phone?.trim() || '',
+      email: data.email?.trim() || '',
+      zipcode: data.zipcode?.trim() || '',
+    }),
+  });
+  const result = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(result.detail || result.student_name?.[0] || result.email?.[0] || 'Submit failed');
+  return result;
 }
 
 // ---------- Dashboard 上传图片（Railway Bucket） ----------

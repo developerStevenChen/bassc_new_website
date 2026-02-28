@@ -34,9 +34,19 @@ export default function DashboardLayout() {
     { to: '/dashboard/homepagepic', end: false, label: 'Home Carousel' },
     { to: '/dashboard/boards', end: false, label: 'Boards' },
     { to: '/dashboard/introductions', end: false, label: 'Introductions' },
+    { to: '/dashboard/pathways', end: false, label: 'Pathway' },
     { to: '/dashboard/news', end: false, label: 'News' },
+    { to: '/dashboard/events', end: false, label: 'Events' },
+    { to: '/dashboard/awards', end: false, label: 'Awards' },
     { to: '/dashboard/navitems', end: false, label: 'Nav Items' },
     { to: '/dashboard/courses', end: false, label: 'Courses' },
+    { to: '/dashboard/classes', end: false, label: 'Classes' },
+    { to: '/dashboard/athletes', end: false, label: 'Athletes' },
+    { to: '/dashboard/coaches', end: false, label: 'Coaches' },
+    { to: '/dashboard/intentclients', end: false, label: 'Intent Clients' },
+    { to: '/dashboard/contactinfo', end: false, label: 'Contact Info' },
+    // 仅 superuser 才看到 Admins
+    ...(user.is_superuser ? [{ to: '/dashboard/admins', end: false, label: 'Admins' }] : []),
   ];
 
   return (

@@ -132,13 +132,12 @@ export const newsList = [
 // Nav (placeholder links; labels in English)
 export const navItems = [
   { id: 'class', label: 'Courses', path: '/class' },
+  { id: 'class_schedule', label: 'Class Schedule', path: '/class-schedule' },
   { id: 'event', label: 'Events', path: '/event' },
   { id: 'athlete', label: 'Athletes', path: '/athlete' },
   { id: 'coach', label: 'Coach', path: '/coach' },
   { id: 'award', label: 'Awards', path: '/award' },
   { id: 'news', label: 'News', path: '/news' },
-  { id: 'micro', label: 'Micro Class', path: '/micro' },
-  { id: 'peripheral', label: 'Merchandise', path: '/peripheral' },
   { id: 'contact', label: 'Contact', path: '/contact' },
 ];
 
@@ -147,6 +146,8 @@ export const defaultHomepage = {
   homePagePic,
   boards,
   introductions,
+  pathway: null,
+  classes: [],
   newsList,
   navItems,
 };

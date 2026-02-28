@@ -30,12 +30,12 @@ elif _env_example.exists():
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$$n0e2xvq_0o#e^rtb5dhhcdtg4&6g!)n@9bkq$^0xrf@x9j5y'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-$$n0e2xvq_0o#e^rtb5dhhcdtg4&6g!)n@9bkq$^0xrf@x9j5y')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() in ('1', 'true', 'yes')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -147,15 +147,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# CORS - 允许 React 前端跨域请求（含 Dashboard）
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:5175',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:5174',
-    'http://127.0.0.1:5175',
+# CORS - 允许 React 前端跨域请求（含 Dashboard）。部署时设 CORS_ALLOWED_ORIGINS 环境变量（逗号分隔，如 https://xxx.up.railway.app）。
+_default_origins = [
+    'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175',
+    'http://127.0.0.1:5173', 'http://127.0.0.1:5174', 'http://127.0.0.1:5175',
 ]
+_raw = os.environ.get('CORS_ALLOWED_ORIGINS', '').strip()
+CORS_ALLOWED_ORIGINS = [o.strip() for o in _raw.split(',') if o.strip()] if _raw else _default_origins
 CORS_ALLOW_CREDENTIALS = True
 
 # Railway Bucket（S3 兼容）- 图片上传

@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
+import TryOutModal from '../components/TryOutModal';
 import { fetchCourseBySlug } from '../api';
 
 export default function CourseDetail() {
   const { slug } = useParams();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [tryOutOpen, setTryOutOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -59,6 +61,11 @@ export default function CourseDetail() {
     course.image_6,
   ].filter(Boolean);
 
+  const heroIntro =
+    course.intro_text
+      ? course.intro_text.split(/\n\n+/)[0].trim()
+      : '';
+
   return (
     <>
       <Header />
@@ -80,6 +87,21 @@ export default function CourseDetail() {
           ) : (
             <div className="course-hero-placeholder" aria-hidden />
           )}
+          <div className="course-hero-overlay">
+            <div className="course-hero-overlay-inner">
+              <div className="course-hero-title-row">
+                <h1 className="hero-title">{course.title}</h1>
+                <button
+                  type="button"
+                  className="course-hero-tryout-btn"
+                  onClick={() => setTryOutOpen(true)}
+                >
+                  Try out
+                </button>
+              </div>
+              {heroIntro && <p className="hero-description">{heroIntro}</p>}
+            </div>
+          </div>
         </section>
 
         <div className="container course-body">
@@ -104,6 +126,7 @@ export default function CourseDetail() {
           )}
         </div>
       </main>
+      <TryOutModal open={tryOutOpen} onClose={() => setTryOutOpen(false)} />
     </>
   );
 }

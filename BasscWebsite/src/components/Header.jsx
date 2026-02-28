@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { navItems as defaultNavItems } from '../data';
 
-export default function Header({ navItems: propNavItems }) {
-  const navItems = propNavItems?.length ? propNavItems : defaultNavItems;
+const HIDE_NAV_PATHS = ['/micro', '/peripheral'];
+
+export default function Header({ navItems: propNavItems, onTryOutClick }) {
+  const raw = propNavItems?.length ? propNavItems : defaultNavItems;
+  const navItems = raw.filter((item) => !HIDE_NAV_PATHS.includes(item.path));
 
   return (
     <header className="header">
@@ -20,6 +23,15 @@ export default function Header({ navItems: propNavItems }) {
               {item.label}
             </Link>
           ))}
+          {onTryOutClick && (
+            <button
+              type="button"
+              className="nav-link nav-link-cta"
+              onClick={onTryOutClick}
+            >
+              Try out
+            </button>
+          )}
         </nav>
       </div>
     </header>

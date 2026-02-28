@@ -2,22 +2,30 @@
 BASSC 速滑俱乐部 - API 视图
 公开 GET 仅返回 is_active=True；POST/PUT/PATCH/DELETE 仅超级用户/管理员。
 """
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from rest_framework import viewsets, status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from .models import HomePagePic, Board, Introduction, News, NavItem, Course
-from .permissions import IsAdminUserOrReadOnly
+from .models import HomePagePic, Board, Introduction, Pathway, Event, Award, News, NavItem, Course, ClassSession, Athlete, Coach, IntentClient, ContactInfo
+from .permissions import IsAdminUserOrReadOnly, AllowCreateOrStaffOnly
 from .serializers import (
     HomePagePicSerializer,
     BoardSerializer,
     IntroductionSerializer,
+    PathwaySerializer,
+    EventSerializer,
+    AwardSerializer,
     NewsSerializer,
     NavItemSerializer,
     CourseSerializer,
+    ClassSessionSerializer,
+    AthleteSerializer,
+    CoachSerializer,
+    IntentClientSerializer,
+    ContactInfoSerializer,
 )
 from .storage_backend import upload_file_to_bucket
 from .utils import get_image_url_for_api
@@ -57,6 +65,33 @@ class IntroductionViewSet(viewsets.ModelViewSet):
         return _filter_active(Introduction.objects.all(), self.request)
 
 
+class PathwayViewSet(viewsets.ModelViewSet):
+    queryset = Pathway.objects.all()
+    serializer_class = PathwaySerializer
+    permission_classes = [IsAdminUserOrReadOnly]
+
+    def get_queryset(self):
+        return _filter_active(Pathway.objects.all(), self.request)
+
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [IsAdminUserOrReadOnly]
+
+    def get_queryset(self):
+        return _filter_active(Event.objects.all(), self.request)
+
+
+class AwardViewSet(viewsets.ModelViewSet):
+    queryset = Award.objects.all()
+    serializer_class = AwardSerializer
+    permission_classes = [IsAdminUserOrReadOnly]
+
+    def get_queryset(self):
+        return _filter_active(Award.objects.all(), self.request)
+
+
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
@@ -84,6 +119,53 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return _filter_active(Course.objects.all(), self.request)
+
+
+class ClassSessionViewSet(viewsets.ModelViewSet):
+    queryset = ClassSession.objects.all()
+    serializer_class = ClassSessionSerializer
+    permission_classes = [IsAdminUserOrReadOnly]
+
+    def get_queryset(self):
+        return _filter_active(ClassSession.objects.all(), self.request)
+
+
+class AthleteViewSet(viewsets.ModelViewSet):
+    queryset = Athlete.objects.all()
+    serializer_class = AthleteSerializer
+    permission_classes = [IsAdminUserOrReadOnly]
+
+    def get_queryset(self):
+        return _filter_active(Athlete.objects.all(), self.request)
+
+
+class CoachViewSet(viewsets.ModelViewSet):
+    queryset = Coach.objects.all()
+    serializer_class = CoachSerializer
+    permission_classes = [IsAdminUserOrReadOnly]
+
+    def get_queryset(self):
+        return _filter_active(Coach.objects.all(), self.request)
+
+
+class IntentClientViewSet(viewsets.ModelViewSet):
+    """获客意向：POST 公开提交，GET/PATCH/DELETE 仅 admin/super"""
+    queryset = IntentClient.objects.all()
+    serializer_class = IntentClientSerializer
+    permission_classes = [AllowCreateOrStaffOnly]
+
+    def perform_create(self, serializer):
+        if self.request.user and self.request.user.is_authenticated and self.request.user.is_staff:
+            serializer.save()
+        else:
+            serializer.save(status='Asked')
+
+
+class ContactInfoViewSet(viewsets.ModelViewSet):
+    """联系信息：GET 公开，PATCH/PUT 仅 admin/super"""
+    queryset = ContactInfo.objects.all()
+    serializer_class = ContactInfoSerializer
+    permission_classes = [IsAdminUserOrReadOnly]
 
 
 @api_view(['GET'])
@@ -115,6 +197,8 @@ def homepage(request):
     pics = HomePagePic.objects.filter(is_active=True).order_by('sort_order')
     boards_qs = Board.objects.filter(is_active=True).order_by('sort_order')
     intros_qs = Introduction.objects.filter(is_active=True).order_by('sort_order')
+    pathway_first = Pathway.objects.filter(is_active=True).order_by('sort_order').first()
+    classes_qs = ClassSession.objects.filter(is_active=True, is_open=True).order_by('sort_order', 'time')
     news_qs = News.objects.filter(is_active=True).order_by('sort_order', '-created_at')[:20]
     nav_qs = NavItem.objects.filter(is_active=True).order_by('sort_order')
 
@@ -132,6 +216,18 @@ def homepage(request):
     introductions_list = [
         {'id': i.id, 'image': get_image_url_for_api(i.image), 'title': i.title, 'text': i.text}
         for i in intros_qs
+    ]
+    # classes：仅返回当前开放的上课排期
+    classes_list = [
+        {
+            'id': c.id,
+            'time': c.time,
+            'location': c.location,
+            'category': c.category,
+            'intro': c.intro,
+            'coach': c.coach,
+        }
+        for c in classes_qs
     ]
     # news：无主图/无配图时用 default
     news_list = []
@@ -154,11 +250,20 @@ def homepage(request):
         {'id': n.key, 'label': n.label, 'path': n.path}
         for n in nav_qs
     ]
+    pathway_data = None
+    if pathway_first:
+        pathway_data = {
+            'id': pathway_first.id,
+            'image': get_image_url_for_api(pathway_first.image),
+            'text': pathway_first.text or '',
+        }
 
     return Response({
         'homePagePic': home_page_pic,
         'boards': boards_list,
         'introductions': introductions_list,
+        'pathway': pathway_data,
+        'classes': classes_list,
         'news': news_list,
         'navItems': nav_items,
     })
@@ -203,6 +308,67 @@ def auth_me(request):
     return Response({
         'user': {'id': u.id, 'username': u.username, 'is_superuser': u.is_superuser, 'is_staff': u.is_staff},
     })
+
+
+# ---------- Superuser 管理 admin 账号 ----------
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def admin_users(request):
+    """仅 superuser 可用：GET 列出 admin 账号，POST 创建新的 admin 账号。"""
+    if not request.user.is_superuser:
+        return Response({'error': '需要 superuser 权限'}, status=status.HTTP_403_FORBIDDEN)
+    User = get_user_model()
+
+    if request.method == 'GET':
+        admins = User.objects.filter(is_staff=True, is_superuser=False).order_by('username')
+        data = [
+            {'id': u.id, 'username': u.username, 'is_active': u.is_active}
+            for u in admins
+        ]
+        return Response({'admins': data})
+
+    # POST 创建 admin
+    username = (request.data.get('username') or '').strip()
+    password = request.data.get('password') or ''
+    if not username or not password:
+        return Response({'error': '需要 username 和 password'}, status=status.HTTP_400_BAD_REQUEST)
+    if User.objects.filter(username=username).exists():
+        return Response({'error': '该用户名已存在'}, status=status.HTTP_400_BAD_REQUEST)
+    user = User.objects.create_user(
+        username=username,
+        password=password,
+        is_staff=True,
+        is_superuser=False,
+        is_active=True,
+    )
+    return Response(
+        {'id': user.id, 'username': user.username, 'is_active': user.is_active},
+        status=status.HTTP_201_CREATED,
+    )
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def admin_deactivate(request, pk: int):
+    """仅 superuser 可用：注销 admin 账号（取消 is_staff 并停用账号）。"""
+    if not request.user.is_superuser:
+        return Response({'error': '需要 superuser 权限'}, status=status.HTTP_403_FORBIDDEN)
+    User = get_user_model()
+    try:
+        user = User.objects.get(pk=pk)
+    except User.DoesNotExist:
+        return Response({'error': '用户不存在'}, status=status.HTTP_404_NOT_FOUND)
+    if user.is_superuser:
+        return Response({'error': '不能操作 superuser'}, status=status.HTTP_400_BAD_REQUEST)
+    # 注销 admin：取消 staff 身份并停用账号
+    user.is_staff = False
+    user.is_active = False
+    user.save()
+    # 让该账号的 token 立即失效
+    Token.objects.filter(user=user).delete()
+    return Response({'detail': 'ok'})
 
 
 # ---------- 图片/视频上传（Railway Bucket） ----------

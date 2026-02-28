@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -33,6 +34,9 @@ module.exports = (env, { mode = 'development' }) => ({
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'import.meta.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL || ''),
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
       inject: 'body',

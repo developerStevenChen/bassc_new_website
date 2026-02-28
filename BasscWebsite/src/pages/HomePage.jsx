@@ -3,7 +3,10 @@ import Header from '../components/Header';
 import HeroCarousel from '../components/HeroCarousel';
 import BoardSection from '../components/BoardSection';
 import IntroductionCarousel from '../components/IntroductionCarousel';
+import PathwayCard from '../components/PathwayCard';
+import ClassSchedule from '../components/ClassSchedule';
 import NewsList from '../components/NewsList';
+import TryOutModal from '../components/TryOutModal';
 import { fetchHomepage } from '../api';
 import { defaultHomepage } from '../data';
 
@@ -22,6 +25,8 @@ function useHomepageData() {
           homePagePic: (payload.homePagePic && payload.homePagePic.length > 0) ? payload.homePagePic : defaultHomepage.homePagePic,
           boards: (payload.boards && payload.boards.length > 0) ? payload.boards : defaultHomepage.boards,
           introductions: (payload.introductions && payload.introductions.length > 0) ? payload.introductions : defaultHomepage.introductions,
+          pathway: payload.pathway ?? defaultHomepage.pathway,
+          classes: Array.isArray(payload.classes) ? payload.classes : defaultHomepage.classes,
           newsList: (payload.newsList && payload.newsList.length > 0) ? payload.newsList : defaultHomepage.newsList,
           navItems: (payload.navItems && payload.navItems.length > 0) ? payload.navItems : defaultHomepage.navItems,
         };
@@ -45,14 +50,16 @@ function useHomepageData() {
 
 export default function HomePage() {
   const { data, loading } = useHomepageData();
+  const [tryOutOpen, setTryOutOpen] = useState(false);
 
   if (loading) {
     return (
       <>
-        <Header navItems={defaultHomepage.navItems} />
+        <Header navItems={defaultHomepage.navItems} onTryOutClick={() => setTryOutOpen(true)} />
         <main className="homepage-loading">
           <p>Loading...</p>
         </main>
+        <TryOutModal open={tryOutOpen} onClose={() => setTryOutOpen(false)} />
       </>
     );
   }
@@ -61,13 +68,16 @@ export default function HomePage() {
 
   return (
     <>
-      <Header navItems={data.navItems} />
+      <Header navItems={data.navItems} onTryOutClick={() => setTryOutOpen(true)} />
       <main>
         <HeroCarousel homePagePic={data.homePagePic} />
         <BoardSection boards={data.boards} />
-        <IntroductionCarousel introductions={data.introductions} />
+        <IntroductionCarousel introductions={data.introductions} onTryOutClick={() => setTryOutOpen(true)} />
+        {data.pathway && <PathwayCard pathway={data.pathway} />}
+        <ClassSchedule classes={data.classes} />
         <NewsList newsList={data.newsList} />
       </main>
+      <TryOutModal open={tryOutOpen} onClose={() => setTryOutOpen(false)} />
     </>
   );
 }

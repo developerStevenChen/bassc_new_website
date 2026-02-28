@@ -96,6 +96,21 @@ img {
   background: var(--color-ice);
 }
 
+.nav-link-cta {
+  background: #2563eb;
+  color: #fff !important;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  margin-left: 8px;
+}
+
+.nav-link-cta:hover {
+  background: #1d4ed8;
+  color: #fff !important;
+}
+
 /* ========== Hero 轮播 ========== */
 .hero-carousel {
   position: relative;
@@ -304,10 +319,40 @@ img {
 }
 
 .intro-text {
-  margin: 0;
   font-size: 1rem;
   color: var(--color-muted);
   line-height: 1.7;
+}
+
+/* 自然段之间保留一行行距 */
+.intro-text-wrap .intro-text-p {
+  margin: 0 0 1em;
+}
+
+.intro-text-wrap .intro-text-p:last-child {
+  margin-bottom: 0;
+}
+
+.intro-tryout-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #2563eb;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.intro-tryout-btn:hover {
+  background: #1d4ed8;
+}
+
+.intro-tryout-btn:active {
+  transform: scale(0.98);
 }
 
 .intro-arrow {
@@ -350,6 +395,62 @@ img {
 .intro-dot.active {
   background: var(--color-primary);
   border-color: var(--color-primary);
+}
+
+/* ========== Pathway 卡片（About the Club 下方） ========== */
+.pathway-section {
+  padding: 48px 0 64px;
+  background: #fff;
+}
+
+.pathway-card {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 32px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.pathway-card--single {
+  grid-template-columns: 1fr;
+}
+
+.pathway-card-image-wrap {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--color-ice);
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.pathway-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.pathway-card-text-wrap {
+  min-width: 0;
+}
+
+.pathway-card-text {
+  font-size: 0.9rem;
+  color: var(--color-dark);
+  line-height: 1.6;
+}
+
+.pathway-card-text .pathway-card-p {
+  margin: 0 0 1em;
+}
+
+.pathway-card-text .pathway-card-p:last-child {
+  margin-bottom: 0;
 }
 
 /* ========== News 列表 ========== */
@@ -506,6 +607,7 @@ img {
 }
 
 .course-hero {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   max-height: 56vw;
@@ -528,6 +630,60 @@ img {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, var(--color-dark) 0%, #1e293b 100%);
+}
+
+.course-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.course-hero-overlay-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 40px 24px 56px;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+  color: #fff;
+  pointer-events: auto;
+}
+
+.course-hero-title-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.course-hero-title-row .hero-title {
+  margin: 0;
+}
+
+.course-hero-tryout-btn {
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  background: #2563eb;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.course-hero-tryout-btn:hover {
+  background: #1d4ed8;
+}
+
+.course-hero-tryout-btn:active {
+  transform: scale(0.98);
 }
 
 .course-body {
@@ -626,6 +782,647 @@ img {
   text-decoration: underline;
 }
 
+/* ========== Class Schedule 课表（Pathway 下方 & 独立页复用） ========== */
+.class-schedule-section {
+  padding: 48px 0 64px;
+}
+
+.class-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.class-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+}
+
+.class-card-time {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.class-card-time-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+.class-card-time-value {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.class-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.class-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.class-card-chip {
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.class-card-intro {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* ========== Athlete / Coach 列表页（共用 list-page） ========== */
+.list-page {
+  padding: 48px 24px 80px;
+}
+
+.list-page-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 24px;
+}
+
+.list-page-loading,
+.list-page-empty {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.list-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.list-card {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.list-card-image-wrap {
+  aspect-ratio: 1;
+  background: var(--color-ice);
+  overflow: hidden;
+}
+
+.list-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.list-card-body {
+  padding: 16px;
+}
+
+.list-card-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--color-dark);
+}
+
+.list-card-intro {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+  margin: 0 0 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.list-card-meta {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.list-card-level {
+  margin-right: 12px;
+}
+
+/* 运动员：图片占满上方，名字 / Level / 来源 / 介绍都在下面 */
+.athlete-list-page .list-page-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.athlete-list-page .list-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.athlete-list-page .list-card-image-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+
+.athlete-list-page .list-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.athlete-list-page .list-card-body {
+  padding: 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.athlete-list-page .list-card-name-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.athlete-list-page .list-card-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  min-width: 0;
+}
+
+.athlete-list-page .list-card-level {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.athlete-list-page .list-card-source {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  display: block;
+}
+
+/* 介绍支持换行：后端存带换行符的文本，这里用 pre-line 保留换行 */
+.athlete-list-page .list-card-intro {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin: 0;
+  white-space: pre-line;
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
+}
+
+/* ========== Event 列表（News 模式：纵向排列，点击弹窗） ========== */
+.event-section {
+  padding: 64px 0 80px;
+}
+
+.event-loading,
+.event-empty {
+  margin: 0;
+  color: var(--color-muted);
+  text-align: center;
+  padding: 2rem;
+}
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.event-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 24px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.25s;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.event-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.event-card:hover .event-card-title {
+  color: var(--color-primary);
+}
+
+.event-card-image-wrap {
+  aspect-ratio: 16/10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-ice);
+}
+
+.event-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-card-body {
+  min-width: 0;
+}
+
+.event-card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: var(--color-dark);
+  transition: color 0.2s;
+}
+
+.event-card-meta {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin: 0 0 8px;
+}
+
+.event-card-intro {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* Event 弹窗 */
+.event-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.event-modal {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 640px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.event-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-dark);
+  z-index: 1;
+}
+
+.event-modal-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.event-modal-content {
+  padding: 32px;
+}
+
+.event-modal-image-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: var(--color-ice);
+}
+
+.event-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--color-dark);
+  line-height: 1.3;
+}
+
+.event-modal-intro {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.event-modal-meta {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin: 0 0 20px;
+}
+
+.event-modal-meta p {
+  margin: 0 0 6px;
+}
+
+.event-modal-label {
+  color: var(--color-dark);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.event-modal-content-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-dark);
+}
+
+.event-modal-content-text .event-modal-p {
+  margin: 0 0 1em;
+}
+
+.event-modal-content-text .event-modal-p:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== Award 列表（同 Event 模式，无地点，仅时间；弹窗内多 6 张附加图） ========== */
+.award-section {
+  padding: 64px 0 80px;
+}
+
+.award-loading,
+.award-empty {
+  margin: 0;
+  color: var(--color-muted);
+  text-align: center;
+  padding: 2rem;
+}
+
+.award-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.award-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 24px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.25s;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.award-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.award-card:hover .award-card-title {
+  color: var(--color-primary);
+}
+
+.award-card-image-wrap {
+  aspect-ratio: 16/10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-ice);
+}
+
+.award-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.award-card-body {
+  min-width: 0;
+}
+
+.award-card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: var(--color-dark);
+  transition: color 0.2s;
+}
+
+.award-card-meta {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin: 0 0 8px;
+}
+
+.award-card-intro {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* Award 弹窗（无地点，仅时间；底部附加图画廊） */
+.award-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.award-modal {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 640px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.award-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-dark);
+  z-index: 1;
+}
+
+.award-modal-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.award-modal-content {
+  padding: 32px;
+}
+
+.award-modal-image-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: var(--color-ice);
+}
+
+.award-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.award-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--color-dark);
+  line-height: 1.3;
+}
+
+.award-modal-intro {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.award-modal-meta {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin: 0 0 20px;
+}
+
+.award-modal-meta p {
+  margin: 0 0 6px;
+}
+
+.award-modal-label {
+  color: var(--color-dark);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.award-modal-content-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-dark);
+}
+
+.award-modal-content-text .award-modal-p {
+  margin: 0 0 1em;
+}
+
+.award-modal-content-text .award-modal-p:last-child {
+  margin-bottom: 0;
+}
+
+.award-modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.award-modal-gallery-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* 教练：稍大卡片，每行 4 个，一屏 1 行 */
+.coach-list-page .list-page-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.coach-list-page .list-card {
+  min-height: 68vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.coach-list-page .list-card-image-wrap {
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+.coach-list-page .list-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.coach-list-page .list-card-intro {
+  -webkit-line-clamp: 4;
+  flex: 1;
+}
+
 /* ========== Placeholder 占位页 ========== */
 .homepage-loading {
   min-height: 40vh;
@@ -669,8 +1466,13 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .intro-content {
+  .intro-content,
+  .pathway-card {
     grid-template-columns: 1fr;
+  }
+
+  .class-schedule-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -714,7 +1516,13 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .news-card {
+  .news-card,
+  .event-card,
+  .award-card {
+    grid-template-columns: 1fr;
+  }
+
+  .class-schedule-grid {
     grid-template-columns: 1fr;
   }
 

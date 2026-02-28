@@ -64,6 +64,73 @@ class Introduction(models.Model):
         return self.title
 
 
+class Pathway(models.Model):
+    """主页 About the Club 下方的 Pathway 卡片 - 一图一段文字"""
+    image = models.URLField(max_length=500, blank=True, verbose_name='图片链接')
+    text = models.TextField(blank=True, verbose_name='文字')
+    sort_order = models.PositiveIntegerField(default=0, verbose_name='排序')
+    is_active = models.BooleanField(default=True, verbose_name='是否启用')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['sort_order']
+        verbose_name = 'Pathway 卡片'
+        verbose_name_plural = 'Pathway 卡片'
+
+    def __str__(self):
+        return (self.text[:50] + '…') if self.text and len(self.text) > 50 else (self.text or 'Pathway')
+
+
+class Event(models.Model):
+    """活动/赛事 - 对应前端 events，Dashboard 管理"""
+    image = models.URLField(max_length=500, blank=True, verbose_name='照片链接')
+    title = models.CharField(max_length=200, verbose_name='标题')
+    intro = models.CharField(max_length=200, blank=True, verbose_name='简介（1 行 30 词以内）')
+    location = models.CharField(max_length=200, blank=True, verbose_name='地点')
+    event_time = models.CharField(max_length=200, blank=True, verbose_name='时间')
+    content = models.TextField(blank=True, verbose_name='详细信息（多段多词）')
+    sort_order = models.PositiveIntegerField(default=0, verbose_name='排序')
+    is_active = models.BooleanField(default=True, verbose_name='是否启用')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['sort_order', '-created_at']
+        verbose_name = '活动'
+        verbose_name_plural = '活动'
+
+    def __str__(self):
+        return self.title
+
+
+class Award(models.Model):
+    """奖项/荣誉 - 对应前端 awards，无地点，仅时间；主图 + 最多 6 张附加图"""
+    image = models.URLField(max_length=500, blank=True, verbose_name='主图链接')
+    title = models.CharField(max_length=200, verbose_name='标题')
+    intro = models.CharField(max_length=200, blank=True, verbose_name='简介（1 行 30 词以内）')
+    event_time = models.CharField(max_length=200, blank=True, verbose_name='时间')
+    content = models.TextField(blank=True, verbose_name='详细信息（多段多词）')
+    image_1 = models.URLField(max_length=500, blank=True, verbose_name='附加图1')
+    image_2 = models.URLField(max_length=500, blank=True, verbose_name='附加图2')
+    image_3 = models.URLField(max_length=500, blank=True, verbose_name='附加图3')
+    image_4 = models.URLField(max_length=500, blank=True, verbose_name='附加图4')
+    image_5 = models.URLField(max_length=500, blank=True, verbose_name='附加图5')
+    image_6 = models.URLField(max_length=500, blank=True, verbose_name='附加图6')
+    sort_order = models.PositiveIntegerField(default=0, verbose_name='排序')
+    is_active = models.BooleanField(default=True, verbose_name='是否启用')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['sort_order', '-created_at']
+        verbose_name = '奖项'
+        verbose_name_plural = '奖项'
+
+    def __str__(self):
+        return self.title
+
+
 class News(models.Model):
     """新闻 - 对应前端 news"""
     title = models.CharField(max_length=200, verbose_name='标题')
@@ -123,6 +190,78 @@ class Course(models.Model):
         return self.title
 
 
+class ClassSession(models.Model):
+    """上课排期 - 用于日历/课表展示当前开放课程"""
+    time = models.CharField(max_length=200, verbose_name='时间')
+    location = models.CharField(max_length=200, verbose_name='地点')
+    category = models.CharField(max_length=100, verbose_name='种类')
+    intro = models.TextField(blank=True, verbose_name='介绍')
+    coach = models.CharField(max_length=100, verbose_name='教练')
+    is_open = models.BooleanField(default=True, verbose_name='是否开放')
+    sort_order = models.PositiveIntegerField(default=0, verbose_name='排序')
+    is_active = models.BooleanField(default=True, verbose_name='是否启用')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['sort_order', 'time']
+        verbose_name = '上课排期'
+        verbose_name_plural = '上课排期'
+
+    def __str__(self):
+        return f'{self.time} - {self.category}'
+
+
+class Athlete(models.Model):
+    """运动员 - 对应前端 /athlete 列表"""
+    image = models.URLField(max_length=500, blank=True, verbose_name='照片链接')
+    name = models.CharField(max_length=100, verbose_name='姓名')
+    intro = models.TextField(blank=True, verbose_name='介绍')
+    team_level = models.PositiveSmallIntegerField(
+        default=1,
+        choices=[(1, 'Level 1'), (2, 'Level 2')],
+        verbose_name='队伍等级',
+    )
+    source = models.CharField(max_length=200, blank=True, verbose_name='入队方式/来源')
+    sort_order = models.PositiveIntegerField(default=0, verbose_name='排序')
+    is_active = models.BooleanField(default=True, verbose_name='是否启用')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['sort_order', 'name']
+        verbose_name = '运动员'
+        verbose_name_plural = '运动员'
+
+    def __str__(self):
+        return self.name
+
+
+class Coach(models.Model):
+    """教练 - 对应前端 /coach 列表"""
+    image = models.URLField(max_length=500, blank=True, verbose_name='照片链接')
+    name = models.CharField(max_length=100, verbose_name='姓名')
+    intro = models.TextField(blank=True, verbose_name='介绍')
+    team_level = models.PositiveSmallIntegerField(
+        default=1,
+        choices=[(1, 'Level 1'), (2, 'Level 2')],
+        verbose_name='队伍等级',
+    )
+    source = models.CharField(max_length=200, blank=True, verbose_name='入队方式/来源')
+    sort_order = models.PositiveIntegerField(default=0, verbose_name='排序')
+    is_active = models.BooleanField(default=True, verbose_name='是否启用')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['sort_order', 'name']
+        verbose_name = '教练'
+        verbose_name_plural = '教练'
+
+    def __str__(self):
+        return self.name
+
+
 class NavItem(models.Model):
     """导航项 - 对应前端 navItems"""
     key = models.CharField(max_length=50, unique=True, verbose_name='标识')
@@ -140,3 +279,63 @@ class NavItem(models.Model):
 
     def __str__(self):
         return self.label
+
+
+class IntentClient(models.Model):
+    """Get Start 获客 - 试课意向客户"""
+    STATUS_CHOICES = [
+        ('Asked', 'Asked'),
+        ('talked', 'talked'),
+        ('Tried', 'Tried'),
+        ('admit', 'admit'),
+        ('quited', 'quited'),
+    ]
+    SKATING_GRADE_CHOICES = [
+        ('', '--'),
+        ('beginner', 'Beginner (0-4 month)'),
+        ('intermediate', 'intermediate (4-12month)'),
+        ('advance', 'Advance (12 month+)'),
+        ('speed_skater', 'Speed Skater (Trained Speed skating 3 month and above)'),
+        ('advance_speed_skater', 'Advance Speed skater (Trained speed skating 12month+)'),
+    ]
+    grade = models.CharField(
+        max_length=30,
+        blank=True,
+        choices=SKATING_GRADE_CHOICES,
+        verbose_name='Skating grade',
+    )
+    student_name = models.CharField(max_length=200, verbose_name='学员姓名')
+    age = models.PositiveSmallIntegerField(null=True, blank=True, verbose_name='年龄')
+    phone = models.CharField(max_length=50, blank=True, verbose_name='电话')
+    email = models.EmailField(max_length=254, blank=True, verbose_name='Email')
+    zipcode = models.CharField(max_length=20, blank=True, verbose_name='Zipcode')
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='Asked',
+        verbose_name='状态',
+    )
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='提交时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = '意向客户'
+        verbose_name_plural = '意向客户'
+
+    def __str__(self):
+        return f'{self.student_name} ({self.status})'
+
+
+class ContactInfo(models.Model):
+    """站点联系信息 - 单条记录，Dashboard 可更新，Contact 页展示"""
+    email = models.EmailField(max_length=254, blank=True, verbose_name='Email')
+    phone = models.CharField(max_length=50, blank=True, verbose_name='Phone')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    class Meta:
+        verbose_name = '联系信息'
+        verbose_name_plural = '联系信息'
+
+    def __str__(self):
+        return self.email or self.phone or 'Contact'
