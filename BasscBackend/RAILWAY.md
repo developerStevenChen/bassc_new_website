@@ -56,11 +56,15 @@ VITE_API_BASE_URL=https://basscnewwebsite-production.up.railway.app
    `ALLOWED_HOSTS=basscnewwebsite-production.up.railway.app`
 
 6. **数据库**  
-   若使用 MySQL（`USE_MYSQL=1`），请配置好 `DB_HOST`、`DB_NAME`、`DB_USER`、`DB_PASSWORD` 等，并执行 `python manage.py migrate`（可在 Deploy 前或 Shell 里执行）。  
-   **未配置时使用 SQLite**：首次部署**必须**在 Railway 后端服务里执行一次：
-   - `python manage.py migrate`（建表）
-   - `python manage.py createsuperuser`（创建可登录前端的超级用户）
-   否则登录接口会返回 500（表或用户不存在）。可在该服务的 **Shell** 或 **Deploy 前命令**中执行。
+   若使用 MySQL（`USE_MYSQL=1`），请配置好 `DB_HOST`、`DB_NAME`、`DB_USER`、`DB_PASSWORD` 等。  
+   **未配置时使用 SQLite**：`start.sh` 已在每次启动时自动执行 `python manage.py migrate --noinput`，无需手动迁移。  
+   **创建可登录的超级用户（二选一）**：  
+   - **推荐**：在该后端服务的 **Variables** 里添加（仅首次部署需要，之后可删掉密码变量）：  
+     - `DJANGO_SUPERUSER_USERNAME` = 你要用的登录名（如 `admin`）  
+     - `DJANGO_SUPERUSER_PASSWORD` = 登录密码  
+     - `DJANGO_SUPERUSER_EMAIL` = 邮箱（可留空，如 `admin@example.com`）  
+     保存后重新部署，启动时会自动执行 `createsuperuser --noinput` 创建该用户；之后用该用户名和密码在前端登录。  
+   - 或在该服务的 **Shell** 里手动执行一次：`python manage.py createsuperuser`，按提示输入用户名和密码。
 
 7. **依赖**  
    `requirements.txt` 已包含 `gunicorn`；构建命令见 `railway.toml` 或使用 `pip install -r requirements.txt`。
