@@ -34,11 +34,14 @@ python manage.py dumpdata --natural-foreign --natural-primary \
   --indent 2 -o data_export.json
 ```
 
-若你希望**连管理员账号一起**导出去（方便用同一账号登录线上），可以**不排除** auth，直接导出全部：
+**若在 Windows 下出现** `'charmap' codec can't encode characters` **编码错误**，请改用脚本（强制 UTF-8 写入）：
 
 ```bash
-python manage.py dumpdata --natural-foreign --natural-primary --indent 2 -o data_export.json
+cd BasscBackend
+python scripts/export_data.py
 ```
+
+（脚本会导出**全部**数据，含管理员账号，便于用同一账号在线上登录。）
 
 生成的 **data_export.json** 在 `BasscBackend/` 下。
 

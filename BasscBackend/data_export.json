@@ -1,0 +1,1603 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "board"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "homepagepic"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "introduction"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "navitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "news"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "newsimage"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "authtoken",
+    "model": "token"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "authtoken",
+    "model": "tokenproxy"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "course"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "athlete"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "coach"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "event"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "award"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "pathway"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "classsession"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "intentclient"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "api",
+    "model": "contactinfo"
+  }
+},
+{
+  "model": "api.homepagepic",
+  "pk": 1,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/253489ce5cb04c3fa0545e3c1f6aaefb.jpg",
+    "title": "Start",
+    "description": "Feel the adrenaline of the explosive start, where raw power meets the ice, launching athletes into a high-speed chase for glory.",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-19T18:56:28.618Z",
+    "updated_at": "2026-02-19T23:53:11.840Z"
+  }
+},
+{
+  "model": "api.homepagepic",
+  "pk": 2,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/043f05d0ce0f4740bc264603afd1b619.jpg",
+    "title": "Cornering",
+    "description": "Defy gravity in the curves—feel the rush as skaters lean deep, using aggressive crossovers to turn raw friction into lethal speed.",
+    "sort_order": 1,
+    "is_active": true,
+    "created_at": "2026-02-19T20:21:47.011Z",
+    "updated_at": "2026-02-19T20:27:17.654Z"
+  }
+},
+{
+  "model": "api.homepagepic",
+  "pk": 3,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/7457561622cc46b687f154f8213ec9ee.jpg",
+    "title": "Training",
+    "description": "Master the ice through relentless conditioning, where every technical drill and power session refines the precision needed for world-class speed.",
+    "sort_order": 2,
+    "is_active": true,
+    "created_at": "2026-02-19T20:28:42.758Z",
+    "updated_at": "2026-02-19T20:28:42.758Z"
+  }
+},
+{
+  "model": "api.homepagepic",
+  "pk": 4,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/4f697dc9b51f4dc085bfa5d2be47fb42.jpg",
+    "title": "Practice",
+    "description": "Witness the dedication behind the speed, where countless repetition drills and rhythm training transform raw effort into seamless, poetic motion on ice.",
+    "sort_order": 3,
+    "is_active": true,
+    "created_at": "2026-02-19T20:29:19.372Z",
+    "updated_at": "2026-02-19T20:29:19.372Z"
+  }
+},
+{
+  "model": "api.homepagepic",
+  "pk": 5,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/20c013f9602447e1bbcc8b35a5417887.jpg",
+    "title": "Rewards",
+    "description": "Celebrate the ultimate triumph, where years of sacrifice culminate in podium glory and the thunderous roar of a crowd honoring speed.",
+    "sort_order": 4,
+    "is_active": true,
+    "created_at": "2026-02-19T23:54:22.567Z",
+    "updated_at": "2026-02-19T23:55:56.120Z"
+  }
+},
+{
+  "model": "api.board",
+  "pk": 1,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/c0e9f998cb584dbe857d1c3af797e827.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260226%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260226T100749Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=4c6d17c9ae856d88147b45b3de7db806bf2100a6d1571d1c2f95c4ac926a6edd",
+    "title": "Ice rink trainning",
+    "description": "this is ice rink training",
+    "link": "/class/speedskating",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-20T00:58:30.917Z",
+    "updated_at": "2026-02-26T10:07:55.932Z"
+  }
+},
+{
+  "model": "api.board",
+  "pk": 2,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/b74c561c7fe1457fa73fe35a46052cbc.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260227%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260227T194129Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=025fd13dbbb242c42beaef9d14cb57e9a26f62c77d4fd0f0000e5379afaf8944",
+    "title": "PE training",
+    "description": "this is PE training",
+    "link": "/class/petraining",
+    "sort_order": 1,
+    "is_active": true,
+    "created_at": "2026-02-20T00:59:01.940Z",
+    "updated_at": "2026-02-27T19:41:44.281Z"
+  }
+},
+{
+  "model": "api.board",
+  "pk": 3,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/a423fab7887641808ec0b24e50bd333e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260226%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260226T100737Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=eee8afee5e25911c535298b5a6d292de6780794041af4945b4e49516fc2ac22d",
+    "title": "speed roller skating",
+    "description": "this is speed roller skating",
+    "link": "/class/inlineroller",
+    "sort_order": 2,
+    "is_active": true,
+    "created_at": "2026-02-20T00:59:57.068Z",
+    "updated_at": "2026-02-26T10:07:49.692Z"
+  }
+},
+{
+  "model": "api.board",
+  "pk": 4,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/2038fda924f04967b7c3adb9b87849ca.jpg",
+    "title": "private class",
+    "description": "this is private class",
+    "link": "/class/privateclass",
+    "sort_order": 3,
+    "is_active": true,
+    "created_at": "2026-02-20T01:00:22.824Z",
+    "updated_at": "2026-02-27T19:44:14.044Z"
+  }
+},
+{
+  "model": "api.introduction",
+  "pk": 1,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/aebfb8a27b284a299160785d634c75e1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260221%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260221T222505Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1e7f4604ec2e7ee18c42c97ff2ab5181813927972a67bb30f6c11a426b0f036b",
+    "title": "Why speed skating",
+    "text": "Speed skating is an Olympic sport that gives young athletes a distinct competitive advantage. With fewer participants than many mainstream sports, children have greater opportunities to earn state and national recognition, strengthening their academic profiles.\n\nPhysically, speed skating develops explosive power, endurance, balance, and coordination. The intense lower-body training improves acceleration and agility, benefiting other sports such as soccer, basketball, and hockey.\n\nMentally, the sport builds focus, discipline, and resilience. Fast-paced races teach children to handle pressure and stay composed. Speed skating is not just a sport—it builds confidence, athletic excellence, and long-term competitive strength.",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-21T22:12:46.189Z",
+    "updated_at": "2026-02-21T22:25:20.340Z"
+  }
+},
+{
+  "model": "api.pathway",
+  "pk": 1,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/8769515d5f01469a8a2265b267eb7104.png",
+    "text": "Ages 5–8:\n• Begin with inline skating to build balance, coordination, and speed fundamentals  \n• Transition into structured small-group ice training  \n\nAges 6–7:\n• Compete in beginner regional events  \n\nAges 7–9:\n• Join A Team and compete in intermediate division  \n\nAges 9–10:\n• Advance to higher divisions and prepare for national-level competition  \n\nAge 11+:\n• Compete at Nationals  \n• Work toward Junior National Team qualification  \n\nAge 13:\n• Eligible for Junior National Team selection",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-23T09:42:30.750Z",
+    "updated_at": "2026-02-23T09:42:30.750Z"
+  }
+},
+{
+  "model": "api.event",
+  "pk": 1,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/58c6621b6e314e928792b8b05f7de922.jpg",
+    "title": "USA national team head coach's Camp",
+    "intro": "USA national team head coach with fresh Olympic story will come hold the camp in Bay area",
+    "location": "San Mateo Ice Oasis",
+    "event_time": "4/23-26 2026",
+    "content": "4 days coach by HongYang Wang who are the head coach of USA national team just come back from Milano winter Olympic.\n\n4 days, 8 hours ice slot, 8 hours dryland training. and two presentation covered fresh Olympic story and advance training concept.",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-22T08:49:32.881Z",
+    "updated_at": "2026-02-22T08:49:32.881Z"
+  }
+},
+{
+  "model": "api.award",
+  "pk": 1,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/55bf240422ba406e9599d5918b716340.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260222%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260222T094039Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8f6c85f9cd28b6fa55e3f221564c41f61d33ce16b09367cc42bafc5ec2472530",
+    "title": "2025 Winter Challenge competition",
+    "intro": "won 10 medals, 2 more athletes qualified for aged national.",
+    "event_time": "12/19/2025",
+    "content": "A team of 15 competed and won 10 medals across 4 categories, breaking almost all personal records, with two new athletes qualifying for the national championships. The team is full of confidence for 2026. Go Bay Area speed skaters!",
+    "image_1": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/63b4e59e7e604f7fb5c41fda59dc4a10.JPG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260222%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260222T094039Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=b1a8d2f81bc6b7eaeff60230bf60620f68c8e162df0e51ef164a4ffd47eab286",
+    "image_2": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/02308c6473d141a8aad7b6b15cf65aed.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260222%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260222T094039Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=be6b55e9fb94b6fbc9cfbc966393eee10267c19be70d8fdb9dd90ae2b56946e6",
+    "image_3": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/d5026506da6c4210ab43c14560be668a.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260222%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260222T094039Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d42c9f5e86b90fa9f04f194a7bdb5ba1137fe3a0d5cce3c4abfd57a08fb826fc",
+    "image_4": "",
+    "image_5": "",
+    "image_6": "",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-22T09:34:59.727Z",
+    "updated_at": "2026-02-22T09:40:52.240Z"
+  }
+},
+{
+  "model": "api.news",
+  "pk": 3,
+  "fields": {
+    "title": "2025 Winter Challenge competition",
+    "intro": "won 10 medals, 2 more athletes qualified for aged national.",
+    "content": "A team of 15 competed and won 10 medals across 4 categories, breaking almost all personal records, with two new athletes qualifying for the national championships. The team is full of confidence for 2026. Go Bay Area speed skaters!",
+    "prim_pic": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/66e7281356c942ba8af845e58cb8747f.jpg",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-21T01:36:19.130Z",
+    "updated_at": "2026-02-21T01:36:19.130Z"
+  }
+},
+{
+  "model": "api.news",
+  "pk": 4,
+  "fields": {
+    "title": "2025 Oval Desert Classic Competition",
+    "intro": "Won 7 metals, A team student qualified for aged national",
+    "content": "In early August, the team participated in the Desert Classic competition and won 7 medals. All members of Team A qualified for the national competition. The entire team broke their individual speed skating records.",
+    "prim_pic": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/38341ec6c0794f0ba09dc90ae8dc0a55.jpg",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-21T01:41:48.788Z",
+    "updated_at": "2026-02-21T01:41:48.788Z"
+  }
+},
+{
+  "model": "api.course",
+  "pk": 1,
+  "fields": {
+    "slug": "speedskating",
+    "title": "Speed Skating Training",
+    "hero_video_url": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/videos/47dd001b89904b15a0a08721c49d0305.mov?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260221%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260221T005810Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1abaf3a85711c417e9288cfb4077f7c48712c758211e2aa942cbb36cb659c525",
+    "intro_text": "Speed ​​skating training on the ice rink is a crucial part of our club's operations. We lease an entire standard speed skating rink at a premium, equipped with protective mats, starting pistols, timing equipment, and skate rental services. Each session features two coaches, dividing participants into A and B teams based on skill level. The course includes 40 minutes of physical conditioning and land-based training. Our dedicated ice rink allows for advanced training programs such as competition simulations, overtaking drills, speed variation drills, pacing drills, and multi-person relays.",
+    "image_1": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/6588bf9278e54c7795f32091888175e7.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260221%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260221T005810Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=73ab200edb207da4cea1faf968346674746f0e666b9fcc38b667d5ff188a4d9f",
+    "image_2": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/0465c8e26b2e43cebf7340e848fe85d3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260221%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260221T005810Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=a7d08469138be47941e8f7b613af210c1b9d188f64442f2669cc87eb550a0d60",
+    "image_3": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/245692ad3803416bb8deb8373015e8ed.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260221%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260221T005810Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1e71440fbf69957e92f80d1d0d73aac33e3dc1bb960e25af0e014caa11ff0a07",
+    "image_4": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/8af5bb550b734b6e9ff1513b69f931bf.jpg",
+    "image_5": "",
+    "image_6": "",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-21T00:58:10.592Z",
+    "updated_at": "2026-02-21T01:01:47.332Z"
+  }
+},
+{
+  "model": "api.course",
+  "pk": 2,
+  "fields": {
+    "slug": "inlineroller",
+    "title": "Inline roller speed skating",
+    "hero_video_url": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/videos/74259451450f484db4c8de581afcc074.MOV",
+    "intro_text": "The basic movements and techniques of inline speed skating are the same as those of ice speed skating. Students interested in inline skating can enroll in our club's small group classes. Instructors will customize course plans and schedules based on each student's individual needs, enabling them to quickly master the fundamentals and improve their speed and posture. Furthermore, given the high cost of ice time at Bay Area ice rinks, inline skating offers several advantages as a cost-effective alternative to ice speed skating, including flexibility in timing, location options, and affordability.",
+    "image_1": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/fd45c47a069547a9a16c308399cf9a5b.jpg",
+    "image_2": "",
+    "image_3": "",
+    "image_4": "",
+    "image_5": "",
+    "image_6": "",
+    "sort_order": 1,
+    "is_active": true,
+    "created_at": "2026-02-21T01:14:09.979Z",
+    "updated_at": "2026-02-21T01:14:09.979Z"
+  }
+},
+{
+  "model": "api.course",
+  "pk": 3,
+  "fields": {
+    "slug": "privateclass",
+    "title": "Private|Small group Class",
+    "hero_video_url": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/videos/a02c135881a24edca4f5a430ca316f66.MOV",
+    "intro_text": "Small group classes and private lessons on ice offer customized courses for students of different levels. Professional teaching services are tailored to each student's skill level and learning goals. Utilizing the ice rink's public sessions provides flexible scheduling and lower costs, making it the ideal choice for beginners and advanced learners seeking customized improvement. Courses are taught by experienced instructors who adjust teaching plans according to each student's interests, personality, and learning pace, enabling students to quickly master various speed skating techniques.",
+    "image_1": "",
+    "image_2": "",
+    "image_3": "",
+    "image_4": "",
+    "image_5": "",
+    "image_6": "",
+    "sort_order": 2,
+    "is_active": true,
+    "created_at": "2026-02-21T01:17:41.051Z",
+    "updated_at": "2026-02-21T01:17:41.051Z"
+  }
+},
+{
+  "model": "api.course",
+  "pk": 4,
+  "fields": {
+    "slug": "petraining",
+    "title": "PE Training",
+    "hero_video_url": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/videos/871e685e360b418e99d8e02aeaf4610e.MOV",
+    "intro_text": "Our professional physical training sessions go beyond the basics to enhance physical literacy, boost strength, and refine coordination. Led by coaches with elite athletic backgrounds, our program identifies individual physical gaps and provides comprehensive development. This approach not only builds a high-performance foundation for speed skating but also equips students with the versatility to excel in any future sport they choose.",
+    "image_1": "",
+    "image_2": "",
+    "image_3": "",
+    "image_4": "",
+    "image_5": "",
+    "image_6": "",
+    "sort_order": 3,
+    "is_active": true,
+    "created_at": "2026-02-27T19:40:44.888Z",
+    "updated_at": "2026-02-27T19:40:44.889Z"
+  }
+},
+{
+  "model": "api.classsession",
+  "pk": 1,
+  "fields": {
+    "time": "Tue 18:50-20:30",
+    "location": "San mateo Ice Oasis",
+    "category": "Speed Skating group training(ice rental)",
+    "intro": "group class with rental ice slot",
+    "coach": "Jacky&Steven",
+    "is_open": true,
+    "sort_order": 2,
+    "is_active": true,
+    "created_at": "2026-02-25T08:45:43.867Z",
+    "updated_at": "2026-02-26T10:04:59.562Z"
+  }
+},
+{
+  "model": "api.classsession",
+  "pk": 2,
+  "fields": {
+    "time": "Thur 18:50-20:30",
+    "location": "San Mateo Ice Oasis",
+    "category": "Speed Skating group training(ice rental)",
+    "intro": "Team training",
+    "coach": "Jacky&Steven",
+    "is_open": true,
+    "sort_order": 1,
+    "is_active": true,
+    "created_at": "2026-02-26T10:03:05.463Z",
+    "updated_at": "2026-02-26T10:03:05.463Z"
+  }
+},
+{
+  "model": "api.classsession",
+  "pk": 3,
+  "fields": {
+    "time": "Sun 17:15-18:55",
+    "location": "San Mateo Ice Oasis",
+    "category": "Speed skaing group training(Ice rental)",
+    "intro": "Team Training",
+    "coach": "Jacky & Steven",
+    "is_open": true,
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-26T10:04:29.797Z",
+    "updated_at": "2026-02-26T10:04:47.298Z"
+  }
+},
+{
+  "model": "api.athlete",
+  "pk": 1,
+  "fields": {
+    "image": "https://t3.storageapi.dev/buffered-trunk-7yzdtczh95/uploads/7fecb0158b7247b9bcb703c8ab080373.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=tid_xqRemcfYFDPAlnpspOksIrvfWYWnAZrOJpJcdIsdcdY_uSHCIe%2F20260221%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260221T220340Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=32a9e317122988758ed044ef2858328f275671cca91f9e551dda28846e8670b1",
+    "name": "Miles",
+    "intro": "2025 Desert classic silver metal\n2025 winter challenge 3 third\nPB：500M / 49.05s",
+    "team_level": 1,
+    "source": "from： 23 inline tryout",
+    "sort_order": 0,
+    "is_active": true,
+    "created_at": "2026-02-21T10:04:40.900Z",
+    "updated_at": "2026-02-21T22:04:52.672Z"
+  }
+},
+{
+  "model": "api.intentclient",
+  "pk": 1,
+  "fields": {
+    "grade": "advance_speed_skater",
+    "student_name": "Steven",
+    "age": 8,
+    "phone": "4088889452",
+    "email": "developerstevenchen@gmail.com",
+    "zipcode": "94086",
+    "status": "admit",
+    "created_at": "2026-02-27T19:22:23.102Z",
+    "updated_at": "2026-02-27T19:23:23.924Z"
+  }
+},
+{
+  "model": "api.intentclient",
+  "pk": 2,
+  "fields": {
+    "grade": "advance_speed_skater",
+    "student_name": "AA",
+    "age": 9,
+    "phone": "4088889452",
+    "email": "kkk@uu.com",
+    "zipcode": "ab",
+    "status": "Asked",
+    "created_at": "2026-02-27T19:24:52.337Z",
+    "updated_at": "2026-02-27T19:24:52.338Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 介绍板块",
+    "content_type": [
+      "api",
+      "board"
+    ],
+    "codename": "add_board"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 介绍板块",
+    "content_type": [
+      "api",
+      "board"
+    ],
+    "codename": "change_board"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 介绍板块",
+    "content_type": [
+      "api",
+      "board"
+    ],
+    "codename": "delete_board"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 介绍板块",
+    "content_type": [
+      "api",
+      "board"
+    ],
+    "codename": "view_board"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 主页轮播图",
+    "content_type": [
+      "api",
+      "homepagepic"
+    ],
+    "codename": "add_homepagepic"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 主页轮播图",
+    "content_type": [
+      "api",
+      "homepagepic"
+    ],
+    "codename": "change_homepagepic"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 主页轮播图",
+    "content_type": [
+      "api",
+      "homepagepic"
+    ],
+    "codename": "delete_homepagepic"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 主页轮播图",
+    "content_type": [
+      "api",
+      "homepagepic"
+    ],
+    "codename": "view_homepagepic"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 介绍文章",
+    "content_type": [
+      "api",
+      "introduction"
+    ],
+    "codename": "add_introduction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 介绍文章",
+    "content_type": [
+      "api",
+      "introduction"
+    ],
+    "codename": "change_introduction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 介绍文章",
+    "content_type": [
+      "api",
+      "introduction"
+    ],
+    "codename": "delete_introduction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 介绍文章",
+    "content_type": [
+      "api",
+      "introduction"
+    ],
+    "codename": "view_introduction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 导航项",
+    "content_type": [
+      "api",
+      "navitem"
+    ],
+    "codename": "add_navitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 导航项",
+    "content_type": [
+      "api",
+      "navitem"
+    ],
+    "codename": "change_navitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 导航项",
+    "content_type": [
+      "api",
+      "navitem"
+    ],
+    "codename": "delete_navitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 导航项",
+    "content_type": [
+      "api",
+      "navitem"
+    ],
+    "codename": "view_navitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 新闻",
+    "content_type": [
+      "api",
+      "news"
+    ],
+    "codename": "add_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 新闻",
+    "content_type": [
+      "api",
+      "news"
+    ],
+    "codename": "change_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 新闻",
+    "content_type": [
+      "api",
+      "news"
+    ],
+    "codename": "delete_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 新闻",
+    "content_type": [
+      "api",
+      "news"
+    ],
+    "codename": "view_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 新闻配图",
+    "content_type": [
+      "api",
+      "newsimage"
+    ],
+    "codename": "add_newsimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 新闻配图",
+    "content_type": [
+      "api",
+      "newsimage"
+    ],
+    "codename": "change_newsimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 新闻配图",
+    "content_type": [
+      "api",
+      "newsimage"
+    ],
+    "codename": "delete_newsimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 新闻配图",
+    "content_type": [
+      "api",
+      "newsimage"
+    ],
+    "codename": "view_newsimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "add_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "change_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "delete_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "view_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add Token",
+    "content_type": [
+      "authtoken",
+      "tokenproxy"
+    ],
+    "codename": "add_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change Token",
+    "content_type": [
+      "authtoken",
+      "tokenproxy"
+    ],
+    "codename": "change_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete Token",
+    "content_type": [
+      "authtoken",
+      "tokenproxy"
+    ],
+    "codename": "delete_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view Token",
+    "content_type": [
+      "authtoken",
+      "tokenproxy"
+    ],
+    "codename": "view_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 课程",
+    "content_type": [
+      "api",
+      "course"
+    ],
+    "codename": "add_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 课程",
+    "content_type": [
+      "api",
+      "course"
+    ],
+    "codename": "change_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 课程",
+    "content_type": [
+      "api",
+      "course"
+    ],
+    "codename": "delete_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 课程",
+    "content_type": [
+      "api",
+      "course"
+    ],
+    "codename": "view_course"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 运动员",
+    "content_type": [
+      "api",
+      "athlete"
+    ],
+    "codename": "add_athlete"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 运动员",
+    "content_type": [
+      "api",
+      "athlete"
+    ],
+    "codename": "change_athlete"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 运动员",
+    "content_type": [
+      "api",
+      "athlete"
+    ],
+    "codename": "delete_athlete"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 运动员",
+    "content_type": [
+      "api",
+      "athlete"
+    ],
+    "codename": "view_athlete"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 教练",
+    "content_type": [
+      "api",
+      "coach"
+    ],
+    "codename": "add_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 教练",
+    "content_type": [
+      "api",
+      "coach"
+    ],
+    "codename": "change_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 教练",
+    "content_type": [
+      "api",
+      "coach"
+    ],
+    "codename": "delete_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 教练",
+    "content_type": [
+      "api",
+      "coach"
+    ],
+    "codename": "view_coach"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 活动",
+    "content_type": [
+      "api",
+      "event"
+    ],
+    "codename": "add_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 活动",
+    "content_type": [
+      "api",
+      "event"
+    ],
+    "codename": "change_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 活动",
+    "content_type": [
+      "api",
+      "event"
+    ],
+    "codename": "delete_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 活动",
+    "content_type": [
+      "api",
+      "event"
+    ],
+    "codename": "view_event"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 奖项",
+    "content_type": [
+      "api",
+      "award"
+    ],
+    "codename": "add_award"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 奖项",
+    "content_type": [
+      "api",
+      "award"
+    ],
+    "codename": "change_award"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 奖项",
+    "content_type": [
+      "api",
+      "award"
+    ],
+    "codename": "delete_award"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 奖项",
+    "content_type": [
+      "api",
+      "award"
+    ],
+    "codename": "view_award"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add Pathway 卡片",
+    "content_type": [
+      "api",
+      "pathway"
+    ],
+    "codename": "add_pathway"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change Pathway 卡片",
+    "content_type": [
+      "api",
+      "pathway"
+    ],
+    "codename": "change_pathway"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete Pathway 卡片",
+    "content_type": [
+      "api",
+      "pathway"
+    ],
+    "codename": "delete_pathway"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view Pathway 卡片",
+    "content_type": [
+      "api",
+      "pathway"
+    ],
+    "codename": "view_pathway"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 上课排期",
+    "content_type": [
+      "api",
+      "classsession"
+    ],
+    "codename": "add_classsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 上课排期",
+    "content_type": [
+      "api",
+      "classsession"
+    ],
+    "codename": "change_classsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 上课排期",
+    "content_type": [
+      "api",
+      "classsession"
+    ],
+    "codename": "delete_classsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 上课排期",
+    "content_type": [
+      "api",
+      "classsession"
+    ],
+    "codename": "view_classsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 意向客户",
+    "content_type": [
+      "api",
+      "intentclient"
+    ],
+    "codename": "add_intentclient"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 意向客户",
+    "content_type": [
+      "api",
+      "intentclient"
+    ],
+    "codename": "change_intentclient"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 意向客户",
+    "content_type": [
+      "api",
+      "intentclient"
+    ],
+    "codename": "delete_intentclient"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 意向客户",
+    "content_type": [
+      "api",
+      "intentclient"
+    ],
+    "codename": "view_intentclient"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add 联系信息",
+    "content_type": [
+      "api",
+      "contactinfo"
+    ],
+    "codename": "add_contactinfo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change 联系信息",
+    "content_type": [
+      "api",
+      "contactinfo"
+    ],
+    "codename": "change_contactinfo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete 联系信息",
+    "content_type": [
+      "api",
+      "contactinfo"
+    ],
+    "codename": "delete_contactinfo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view 联系信息",
+    "content_type": [
+      "api",
+      "contactinfo"
+    ],
+    "codename": "view_contactinfo"
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$YpRjJ3nf7Um2AUbGcFCe2y$oQYxBhu+mDHEMVSpFZlrVgwxTb+OjXA0AFkSbnG5jS8=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "basscSuper",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@bassc.local",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-02-19T02:38:22.525Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$WuuSiCVN3vGC1IyeG1lS3N$RS/4JRq3dz94o5n/gyghKJEaxjjGGpWHm51yzVsOUJs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-02-26T10:00:59.463Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "b8f41171faab205ee5643a8f4fbf1ca80d87de89",
+  "fields": {
+    "user": [
+      "basscSuper"
+    ],
+    "created": "2026-02-19T09:52:13.101Z"
+  }
+}
+]
