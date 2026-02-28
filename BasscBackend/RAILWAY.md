@@ -66,7 +66,8 @@ VITE_API_BASE_URL=https://basscnewwebsite-production.up.railway.app
    在服务 **Settings → Build → Builder** 里选 **Dockerfile**（仓库内 `BasscBackend/Dockerfile` 已配好），保存后重新部署。  
    同时请到 **Deployments → 最新部署 → View Logs** 把报错内容复制下来，便于排查（如数据库连接失败、模块找不到等）。
 
-9. **用极简服务排查：确认是「域名/端口」还是「Django」问题**  
+9. **用极简服务排查（无需改 Start Command）**  
    仓库内提供了 `server_minimal.py`（不依赖 Django，只监听 PORT 并返回 200）。  
-   - 在后端服务 **Settings** 里把 **Start Command** 临时改为：`python server_minimal.py`，保存并重新部署。  
-   - 用**该后端服务的域名**访问 `https://<后端域名>/`，若返回 `{"ok":true,"msg":"minimal server"}`，说明流量能到容器，问题在 Django，可把 Start Command 改回 `sh start.sh` 再查 Django/DB；若仍然 502，说明是域名绑错服务或目标端口错误，请再核对步骤 0 和 1。
+   - 在后端服务 **Variables** 里**新增**一条：`USE_MINIMAL_SERVER` = `1`，保存后会自动重新部署。  
+   - 用**该后端服务的域名**访问 `https://<后端域名>/`，若返回 `{"ok":true,"msg":"minimal server"}`，说明流量能到容器，问题在 Django，可删掉变量 `USE_MINIMAL_SERVER` 再查 Django/DB；若仍然 502，说明是域名绑错服务或目标端口错误，请再核对步骤 0 和 1。  
+   - 测完后记得删掉 `USE_MINIMAL_SERVER` 或设为空，否则会一直跑极简服务而不是 Django。
