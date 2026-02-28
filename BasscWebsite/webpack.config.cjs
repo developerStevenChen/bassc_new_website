@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = (env, { mode = 'development' }) => ({
   mode,
   entry: './src/main.jsx',
+  // 构建时缓存写到 /tmp，避免 Railway/Nixpacks 对 node_modules/.cache 的挂载导致 EBUSY
+  cache: mode === 'production' ? { type: 'filesystem', cacheDirectory: '/tmp/webpack-cache' } : true,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: mode === 'production' ? 'assets/[name].[contenthash:8].js' : 'assets/[name].js',

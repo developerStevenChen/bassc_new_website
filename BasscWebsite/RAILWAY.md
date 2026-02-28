@@ -34,6 +34,11 @@ VITE_API_BASE_URL=https://basscbackend-production.up.railway.app
 
 若出现 502，在 **Networking** 里确认 **Target Port** 与 Railway 提供的 `PORT` 一致（通常 8080），或留空自动检测。
 
+## 6. Node 版本与构建 EBUSY
+
+- 前端依赖需要 **Node 20**，仓库内已加 `.nvmrc`（内容为 `20`）和 `package.json` 的 `engines.node`。若构建仍用 Node 18，可在该服务 **Variables** 里加 **NIXPACKS_NODE_VERSION** = **20**。
+- 若出现 `EBUSY: resource busy or locked, rmdir node_modules/.cache`，已通过 webpack 的 `cacheDirectory: '/tmp/webpack-cache'` 规避。
+
 ---
 
 部署完成后用**前端域名**访问；接口请求会发往后端域名（由 `VITE_API_BASE_URL` 决定）。
