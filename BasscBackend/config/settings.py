@@ -152,13 +152,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# CORS - 允许 React 前端跨域请求（含 Dashboard）。部署时设 CORS_ALLOWED_ORIGINS 环境变量（逗号分隔，如 https://xxx.up.railway.app）。
+# CORS - 允许 React 前端跨域请求（含 Dashboard）。
+# 部署到 Railway 时：除 CORS_ALLOWED_ORIGINS 外，允许任意 https://*.railway.app，避免前端域名带 -7145 等后缀被拒。
 _default_origins = [
     'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175',
     'http://127.0.0.1:5173', 'http://127.0.0.1:5174', 'http://127.0.0.1:5175',
 ]
 _raw = os.environ.get('CORS_ALLOWED_ORIGINS', '').strip()
 CORS_ALLOWED_ORIGINS = [o.strip() for o in _raw.split(',') if o.strip()] if _raw else _default_origins
+# Railway 上允许所有 *.railway.app 前端来源（OPTIONS 预检会带上正确 Allow-Origin）
+if os.environ.get('PORT'):
+    CORS_ALLOWED_ORIGIN_REGEXES = [r'^https://[a-z0-9-]+\.up\.railway\.app$']
 CORS_ALLOW_CREDENTIALS = True
 
 # Railway Bucket（S3 兼容）- 图片上传
