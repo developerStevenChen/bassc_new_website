@@ -35,7 +35,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-$$n0e2xvq_0o#e^rtb5dh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('1', 'true', 'yes')
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS: 本地用 localhost；Railway 部署时必须包含域名（Railway 会设置 PORT）
+_allowed = [h.strip() for h in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if h.strip()]
+if os.environ.get('PORT'):
+    _allowed.append('.railway.app')
+ALLOWED_HOSTS = list(dict.fromkeys(_allowed))
 
 
 # Application definition
