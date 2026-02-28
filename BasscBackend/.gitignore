@@ -6,6 +6,7 @@ __pycache__/
 .env
 .env.local
 db.sqlite3
+data_export.json
 media/
 staticfiles/
 *.log

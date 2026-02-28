@@ -91,9 +91,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-# 使用 MySQL：设置环境变量 USE_MYSQL=1 以及 DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT
+# 优先 DATABASE_URL（Railway PostgreSQL 等）；否则 USE_MYSQL=1 用 MySQL；否则 SQLite（容器重启会丢数据）
 
-if os.environ.get('USE_MYSQL') == '1':
+if os.environ.get('DATABASE_URL'):
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+elif os.environ.get('USE_MYSQL') == '1':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',

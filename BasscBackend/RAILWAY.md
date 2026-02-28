@@ -56,15 +56,10 @@ VITE_API_BASE_URL=https://basscnewwebsite-production.up.railway.app
    `ALLOWED_HOSTS=basscnewwebsite-production.up.railway.app`
 
 6. **数据库**  
-   若使用 MySQL（`USE_MYSQL=1`），请配置好 `DB_HOST`、`DB_NAME`、`DB_USER`、`DB_PASSWORD` 等。  
-   **未配置时使用 SQLite**：`start.sh` 已在每次启动时自动执行 `python manage.py migrate --noinput`，无需手动迁移。  
-   **创建可登录的超级用户（二选一）**：  
-   - **推荐**：在该后端服务的 **Variables** 里添加（仅首次部署需要，之后可删掉密码变量）：  
-     - `DJANGO_SUPERUSER_USERNAME` = 你要用的登录名（如 `admin`）  
-     - `DJANGO_SUPERUSER_PASSWORD` = 登录密码  
-     - `DJANGO_SUPERUSER_EMAIL` = 邮箱（可留空，如 `admin@example.com`）  
-     保存后重新部署，启动时会自动执行 `createsuperuser --noinput` 创建该用户；之后用该用户名和密码在前端登录。  
-   - 或在该服务的 **Shell** 里手动执行一次：`python manage.py createsuperuser`，按提示输入用户名和密码。
+   - **推荐生产环境使用 PostgreSQL（数据持久化）**：在 Railway 项目里 **+ New → Database → PostgreSQL**，创建后 Railway 会自动把 **DATABASE_URL** 注入到同项目的后端服务（或在后端 Variables 里手动添加）。本仓库已支持 `DATABASE_URL`，配置后重启即可用 PostgreSQL，**数据不会因重新部署而丢失**。详见 **DATA_MIGRATION.md**（带数据上线、导出导入步骤）。  
+   - 若使用 MySQL：设置 **USE_MYSQL=1** 及 **DB_HOST**、**DB_NAME**、**DB_USER**、**DB_PASSWORD** 等。  
+   - **未配置 DATABASE_URL 且未配置 MySQL 时**使用 SQLite：`start.sh` 会执行 `migrate`，但 **SQLite 在容器内，重新部署后数据会丢失**，仅适合测试。  
+   - **创建可登录的超级用户**：在后端 **Variables** 里添加 **DJANGO_SUPERUSER_USERNAME**、**DJANGO_SUPERUSER_PASSWORD**（及可选 **DJANGO_SUPERUSER_EMAIL**），保存后重新部署，启动时会自动执行 `createsuperuser --noinput`；或在该服务 **Shell** 里执行 `python manage.py createsuperuser`。
 
 7. **依赖**  
    `requirements.txt` 已包含 `gunicorn`；构建命令见 `railway.toml` 或使用 `pip install -r requirements.txt`。
