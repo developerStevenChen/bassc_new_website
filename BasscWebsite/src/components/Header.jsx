@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { navItems as defaultNavItems } from '../data';
 
@@ -16,29 +17,19 @@ export default function Header({ navItems: propNavItems, onTryOutClick }) {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  return (
-    <header className={`header ${menuOpen ? 'header-nav-open' : ''}`}>
-      <div className="header-inner">
-        <Link to="/" className="logo" onClick={closeMenu}>
-          Bay Area Evd Speed Skating
-        </Link>
-        <button
-          type="button"
-          className="header-hamburger"
-          aria-label="打开菜单"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          <span className="header-hamburger-bar" />
-          <span className="header-hamburger-bar" />
-          <span className="header-hamburger-bar" />
-        </button>
-        <nav className="nav">
+  const overlayEl = menuOpen ? (
+    <div
+      className="nav-overlay nav-overlay-open"
+      aria-hidden={false}
+      onClick={closeMenu}
+    >
+      <div className="nav-overlay-panel" onClick={(e) => e.stopPropagation()}>
+        <nav className="nav nav-mobile">
           {navItems.map((item) => (
             <Link
               key={item.id}
               to={item.path}
-              className="nav-link"
+              className="nav-link nav-link-mobile"
               onClick={closeMenu}
             >
               {item.label}
@@ -47,7 +38,7 @@ export default function Header({ navItems: propNavItems, onTryOutClick }) {
           {onTryOutClick && (
             <button
               type="button"
-              className="nav-link nav-link-cta"
+              className="nav-link nav-link-cta nav-link-mobile"
               onClick={() => { closeMenu(); onTryOutClick?.(); }}
             >
               Try out
@@ -55,18 +46,33 @@ export default function Header({ navItems: propNavItems, onTryOutClick }) {
           )}
         </nav>
       </div>
-      <div
-        className="nav-overlay"
-        aria-hidden={!menuOpen}
-        onClick={closeMenu}
-      >
-        <div className="nav-overlay-panel" onClick={(e) => e.stopPropagation()}>
-          <nav className="nav nav-mobile">
+    </div>
+  ) : null;
+
+  return (
+    <>
+      <header className={`header ${menuOpen ? 'header-nav-open' : ''}`}>
+        <div className="header-inner">
+          <Link to="/" className="logo" onClick={closeMenu}>
+            Bay Area Evd Speed Skating
+          </Link>
+          <button
+            type="button"
+            className="header-hamburger"
+            aria-label="打开菜单"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            <span className="header-hamburger-bar" />
+            <span className="header-hamburger-bar" />
+            <span className="header-hamburger-bar" />
+          </button>
+          <nav className="nav">
             {navItems.map((item) => (
               <Link
                 key={item.id}
                 to={item.path}
-                className="nav-link nav-link-mobile"
+                className="nav-link"
                 onClick={closeMenu}
               >
                 {item.label}
@@ -75,7 +81,7 @@ export default function Header({ navItems: propNavItems, onTryOutClick }) {
             {onTryOutClick && (
               <button
                 type="button"
-                className="nav-link nav-link-cta nav-link-mobile"
+                className="nav-link nav-link-cta"
                 onClick={() => { closeMenu(); onTryOutClick?.(); }}
               >
                 Try out
@@ -83,7 +89,8 @@ export default function Header({ navItems: propNavItems, onTryOutClick }) {
             )}
           </nav>
         </div>
-      </div>
-    </header>
+      </header>
+      {overlayEl && createPortal(overlayEl, document.body)}
+    </>
   );
 }
