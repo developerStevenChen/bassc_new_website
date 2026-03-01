@@ -99,3 +99,37 @@
   font-size: 0.95rem;
   color: var(--color-muted);
 }
+
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 32px 0 56px;
+  }
+
+  .contact-page-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-page-lead {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .contact-card {
+    padding: 20px 16px;
+  }
+
+  .contact-card-value {
+    font-size: 1rem;
+  }
+
+  .contact-card-btn {
+    padding: 12px 24px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page-inner {
+    padding: 0 16px;
+  }
+}

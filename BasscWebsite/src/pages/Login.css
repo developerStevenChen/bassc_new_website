@@ -81,3 +81,26 @@
   border-radius: 8px;
   font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+  .login-page {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 48px;
+  }
+
+  .login-box {
+    padding: 1.5rem 1.25rem;
+    max-width: 100%;
+  }
+
+  .login-box h1 {
+    font-size: 1.35rem;
+  }
+
+  .login-form input,
+  .login-form button {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+  }
+}

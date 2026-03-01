@@ -111,6 +111,86 @@ img {
   color: #fff !important;
 }
 
+/* 汉堡菜单按钮（仅移动端显示） */
+.header-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.header-hamburger:hover {
+  background: var(--color-ice);
+}
+.header-hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-dark);
+  border-radius: 1px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.header-nav-open .header-hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.header-nav-open .header-hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+.header-nav-open .header-hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* 移动端全屏导航遮罩 */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(15, 23, 42, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+.header-nav-open .nav-overlay {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+.nav-overlay-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(280px, 85vw);
+  height: 100%;
+  background: #fff;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  padding: 24px 24px 24px;
+  overflow-y: auto;
+}
+.nav-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-link-mobile {
+  display: block;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.nav-link-mobile.nav-link-cta {
+  margin-left: 0;
+  margin-top: 12px;
+  text-align: center;
+}
+
 /* ========== Hero 轮播 ========== */
 .hero-carousel {
   position: relative;
@@ -1460,7 +1540,7 @@ img {
   text-decoration: underline;
 }
 
-/* ========== 响应式 ========== */
+/* ========== 响应式（仅影响非 Dashboard 的公开页，不改桌面版布局） ========== */
 @media (max-width: 1024px) {
   .board-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1474,56 +1554,106 @@ img {
   .class-schedule-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .athlete-list-page .list-page-grid,
+  .coach-list-page .list-page-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .header-inner {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 12px 16px;
+  .container {
+    padding: 0 16px;
   }
 
-  .nav {
-    flex-wrap: wrap;
-    width: 100%;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #eee;
+  .header-inner {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .header-hamburger {
+    display: flex;
+  }
+
+  .header-inner .nav {
+    display: none !important;
   }
 
   .hero-carousel {
-    height: 400px;
+    height: 360px;
+  }
+
+  .hero-content {
+    padding: 32px 16px 56px;
   }
 
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .hero-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .hero-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 
   .hero-prev { left: 12px; }
   .hero-next { right: 12px; }
 
+  .hero-indicators {
+    bottom: 16px;
+  }
+
+  .board-section,
+  .intro-section,
+  .news-section,
+  .pathway-section,
+  .class-schedule-section,
+  .event-section,
+  .award-section {
+    padding: 40px 0 56px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
   .board-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .news-card,
-  .event-card,
-  .award-card {
-    grid-template-columns: 1fr;
+  .board-card .board-title {
+    font-size: 1.05rem;
+    margin: 12px 16px 6px;
   }
 
-  .class-schedule-grid {
-    grid-template-columns: 1fr;
+  .board-card .board-desc {
+    margin: 0 16px 16px;
+    font-size: 0.85rem;
+  }
+
+  .intro-content {
+    min-height: 280px;
+    gap: 24px;
+  }
+
+  .intro-title {
+    font-size: 1.25rem;
+  }
+
+  .intro-text {
+    font-size: 0.95rem;
+  }
+
+  .intro-tryout-btn {
+    padding: 14px 20px;
+    font-size: 0.95rem;
   }
 
   .intro-carousel {
@@ -1532,5 +1662,223 @@ img {
 
   .intro-arrow {
     display: none;
+  }
+
+  .intro-indicators {
+    margin-top: 20px;
+  }
+
+  .pathway-card {
+    padding: 20px 16px;
+    gap: 24px;
+  }
+
+  .pathway-card-text {
+    font-size: 0.9rem;
+  }
+
+  .news-header {
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .news-card,
+  .event-card,
+  .award-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .news-card .news-image-wrap,
+  .event-card-image-wrap,
+  .award-card-image-wrap {
+    aspect-ratio: 16/10;
+  }
+
+  .news-title,
+  .event-card-title,
+  .award-card-title {
+    font-size: 1.1rem;
+  }
+
+  .class-schedule-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .class-card {
+    padding: 14px 16px;
+  }
+
+  .list-page,
+  .course-list-page {
+    padding: 32px 16px 56px;
+  }
+
+  .list-page-title,
+  .course-list-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .list-page-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .athlete-list-page .list-page-grid,
+  .coach-list-page .list-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .list-card-body {
+    padding: 14px;
+  }
+
+  .coach-list-page .list-card {
+    min-height: unset;
+  }
+
+  .news-detail {
+    padding: 32px 16px 56px;
+  }
+
+  .news-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .news-detail-intro {
+    font-size: 1rem;
+  }
+
+  .news-back {
+    margin-bottom: 16px;
+  }
+
+  .course-hero-overlay-inner {
+    padding: 24px 16px 40px;
+  }
+
+  .course-hero-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .course-hero-overlay .hero-description {
+    display: none;
+  }
+
+  .course-hero-title-row .hero-title {
+    font-size: 1.35rem;
+  }
+
+  .course-hero-tryout-btn {
+    width: 100%;
+    max-width: 200px;
+    padding: 12px 20px;
+  }
+
+  .course-body {
+    padding: 32px 16px 56px;
+  }
+
+  .course-title {
+    font-size: 1.5rem;
+  }
+
+  .course-gallery {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* 弹窗移动端：接近全屏、大关闭按钮 */
+  .event-modal-overlay,
+  .award-modal-overlay {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .event-modal,
+  .award-modal {
+    max-height: 95vh;
+    margin: auto 0;
+  }
+
+  .event-modal-content,
+  .award-modal-content {
+    padding: 24px 20px 32px;
+  }
+
+  .event-modal-close,
+  .award-modal-close {
+    width: 44px;
+    height: 44px;
+    top: 12px;
+    right: 12px;
+    font-size: 1.25rem;
+  }
+
+  .event-modal-title,
+  .award-modal-title {
+    font-size: 1.35rem;
+  }
+
+  .award-modal-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .placeholder-main {
+    padding: 24px 16px;
+    min-height: 50vh;
+  }
+
+  .homepage-loading {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-carousel {
+    height: 280px;
+  }
+
+  .hero-title {
+    font-size: 1.3rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .board-section,
+  .intro-section,
+  .news-section,
+  .pathway-section,
+  .class-schedule-section {
+    padding: 32px 0 48px;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+  }
+
+  .contact-page {
+    padding: 32px 0 48px;
+  }
+
+  .contact-page-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-page-lead {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .contact-card {
+    padding: 18px 16px;
   }
 }
