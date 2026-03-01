@@ -70,7 +70,7 @@ export default function HomePage() {
     <>
       <Header navItems={data.navItems} onTryOutClick={() => setTryOutOpen(true)} />
       <main>
-        <HeroCarousel homePagePic={data.homePagePic} />
+        <HeroCarousel homePagePic={data.homePagePic} onTryOutClick={() => setTryOutOpen(true)} />
         <BoardSection boards={data.boards} />
         <IntroductionCarousel introductions={data.introductions} onTryOutClick={() => setTryOutOpen(true)} />
         {data.pathway && <PathwayCard pathway={data.pathway} />}

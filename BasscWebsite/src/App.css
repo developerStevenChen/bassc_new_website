@@ -302,6 +302,11 @@ img {
 .hero-prev { left: 24px; }
 .hero-next { right: 24px; }
 
+/* 手机版轮播图右上角 Try out 按钮（桌面端隐藏） */
+.hero-tryout-btn {
+  display: none;
+}
+
 /* ========== Board 板块 ========== */
 .board-section {
   padding: 64px 0;
@@ -755,13 +760,13 @@ img {
 }
 
 .course-hero-tryout-btn {
-  padding: 14px 28px;
-  font-size: 1.05rem;
+  padding: 7px 14px;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #fff;
   background: #2563eb;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
   font-family: inherit;
   transition: background 0.2s, transform 0.1s;
@@ -1617,6 +1622,33 @@ img {
     bottom: 16px;
   }
 
+  .hero-tryout-btn {
+    display: flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: #2563eb;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, transform 0.1s;
+  }
+  .hero-tryout-btn:hover {
+    background: #1d4ed8;
+  }
+  .hero-tryout-btn:active {
+    transform: scale(0.98);
+  }
+
   .board-section,
   .intro-section,
   .news-section,
@@ -1786,8 +1818,9 @@ img {
 
   .course-hero-tryout-btn {
     width: 100%;
-    max-width: 200px;
-    padding: 12px 20px;
+    max-width: 100px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
   }
 
   .course-body {

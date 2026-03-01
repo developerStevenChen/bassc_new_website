@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { defaultHomepage } from '../data';
 
-export default function HeroCarousel({ homePagePic: propPics }) {
+export default function HeroCarousel({ homePagePic: propPics, onTryOutClick }) {
   const homePagePic = propPics?.length ? propPics : defaultHomepage.homePagePic;
   const [current, setCurrent] = useState(0);
 
@@ -38,6 +38,15 @@ export default function HeroCarousel({ homePagePic: propPics }) {
         <h1 className="hero-title">{item.title}</h1>
         <p className="hero-description">{item.description}</p>
       </div>
+      {onTryOutClick && (
+        <button
+          type="button"
+          className="hero-tryout-btn"
+          onClick={onTryOutClick}
+        >
+          Try out
+        </button>
+      )}
       <div className="hero-indicators">
         {homePagePic.map((_, index) => (
           <button
