@@ -195,7 +195,7 @@ class CoachSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coach
         fields = [
-            'id', 'image', 'name', 'title', 'intro', 'team_level', 'source',
+            'id', 'image', 'name', 'title', 'intro',
             'sort_order', 'is_active', 'created_at', 'updated_at',
         ]
         read_only_fields = ['created_at', 'updated_at']

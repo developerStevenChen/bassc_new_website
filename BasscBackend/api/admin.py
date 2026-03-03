@@ -46,7 +46,7 @@ class AthleteAdmin(admin.ModelAdmin):
 
 @admin.register(Coach)
 class CoachAdmin(admin.ModelAdmin):
-    list_display = ('name', 'title', 'team_level', 'sort_order', 'is_active')
+    list_display = ('name', 'title', 'sort_order', 'is_active')
 
 
 @admin.register(IntentClient)

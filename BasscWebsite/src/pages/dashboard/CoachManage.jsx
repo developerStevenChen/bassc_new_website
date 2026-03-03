@@ -15,7 +15,7 @@ export default function CoachManage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState({
-    name: '', title: '', intro: '', image: '', team_level: 1, source: '', sort_order: 0, is_active: true,
+    name: '', title: '', intro: '', image: '', sort_order: 0, is_active: true,
   });
   const [imageFile, setImageFile] = useState(null);
   const [submitError, setSubmitError] = useState('');
@@ -34,8 +34,6 @@ export default function CoachManage() {
       title: '',
       intro: '',
       image: '',
-      team_level: 1,
-      source: '',
       sort_order: list.length,
       is_active: true,
     });
@@ -51,8 +49,6 @@ export default function CoachManage() {
       title: row.title || '',
       intro: row.intro || '',
       image: row.image || '',
-      team_level: row.team_level ?? 1,
-      source: row.source || '',
       sort_order: row.sort_order ?? 0,
       is_active: row.is_active ?? true,
     });
@@ -81,8 +77,6 @@ export default function CoachManage() {
       title: form.title.trim(),
       intro: form.intro.trim(),
       image: imageUrl,
-      team_level: Number(form.team_level),
-      source: form.source.trim(),
       sort_order: Number(form.sort_order),
       is_active: !!form.is_active,
     };
@@ -169,11 +163,6 @@ export default function CoachManage() {
               <label>Name <input type="text" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} required /></label>
               <label>Title <input type="text" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="e.g. Head Coach" /></label>
               <label>Intro <textarea value={form.intro} onChange={(e) => setForm((f) => ({ ...f, intro: e.target.value }))} rows={6} placeholder="文字介绍，可多行" /></label>
-              <label>Team Level <select value={form.team_level} onChange={(e) => setForm((f) => ({ ...f, team_level: e.target.value }))}>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-              </select></label>
-              <label>Source (join method) <input type="text" value={form.source} onChange={(e) => setForm((f) => ({ ...f, source: e.target.value }))} placeholder="e.g. Internal" /></label>
               <label>Order <input type="number" value={form.sort_order} onChange={(e) => setForm((f) => ({ ...f, sort_order: e.target.value }))} /></label>
               <label><input type="checkbox" checked={form.is_active} onChange={(e) => setForm((f) => ({ ...f, is_active: e.target.checked }))} /> Active</label>
               <div className="dashboard-modal-footer">
