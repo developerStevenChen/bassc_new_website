@@ -241,6 +241,7 @@ class Coach(models.Model):
     """教练 - 对应前端 /coach 列表"""
     image = models.URLField(max_length=500, blank=True, verbose_name='照片链接')
     name = models.CharField(max_length=100, verbose_name='姓名')
+    title = models.CharField(max_length=200, blank=True, verbose_name='头衔 / Title')
     intro = models.TextField(blank=True, verbose_name='介绍')
     team_level = models.PositiveSmallIntegerField(
         default=1,

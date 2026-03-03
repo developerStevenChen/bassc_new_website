@@ -43,11 +43,8 @@ export default function CoachList() {
                   </div>
                   <div className="list-card-body">
                     <h2 className="list-card-name">{item.name}</h2>
+                    {item.title && <p className="coach-card-title">{item.title}</p>}
                     <p className="list-card-intro">{item.intro || '—'}</p>
-                    <div className="list-card-meta">
-                      <span className="list-card-level">Level {item.team_level}</span>
-                      {item.source && <span className="list-card-source">{item.source}</span>}
-                    </div>
                   </div>
                 </article>
               ))}

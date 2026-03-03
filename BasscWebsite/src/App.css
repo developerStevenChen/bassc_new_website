@@ -1487,20 +1487,20 @@ img {
   border-radius: var(--radius);
 }
 
-/* 教练：稍大卡片，每行 4 个，一屏 1 行 */
+/* 教练：大卡片，一行两个，介绍区域留多 */
 .coach-list-page .list-page-grid {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 }
 
 .coach-list-page .list-card {
-  min-height: 68vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
 }
 
 .coach-list-page .list-card-image-wrap {
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
   flex: 0 0 auto;
   min-height: 0;
 }
@@ -1509,12 +1509,33 @@ img {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 24px 20px 28px;
+  gap: 8px;
+}
+
+.coach-list-page .list-card-name {
+  font-size: 1.35rem;
+  margin-bottom: 4px;
+}
+
+.coach-card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-primary-dark);
+  margin: 0 0 8px;
 }
 
 .coach-list-page .list-card-intro {
-  -webkit-line-clamp: 4;
   flex: 1;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+  margin: 0;
+  white-space: pre-line;
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
+  min-height: 8em;
 }
 
 /* ========== Placeholder 占位页 ========== */

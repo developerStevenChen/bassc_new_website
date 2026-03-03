@@ -15,7 +15,7 @@ export default function CoachManage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState({
-    name: '', intro: '', image: '', team_level: 1, source: '', sort_order: 0, is_active: true,
+    name: '', title: '', intro: '', image: '', team_level: 1, source: '', sort_order: 0, is_active: true,
   });
   const [imageFile, setImageFile] = useState(null);
   const [submitError, setSubmitError] = useState('');
@@ -29,7 +29,16 @@ export default function CoachManage() {
 
   function openAdd() {
     setEditing(null);
-    setForm({ name: '', intro: '', image: '', team_level: 1, source: '', sort_order: list.length, is_active: true });
+    setForm({
+      name: '',
+      title: '',
+      intro: '',
+      image: '',
+      team_level: 1,
+      source: '',
+      sort_order: list.length,
+      is_active: true,
+    });
     setImageFile(null);
     setSubmitError('');
     setModalOpen(true);
@@ -39,6 +48,7 @@ export default function CoachManage() {
     setEditing(row);
     setForm({
       name: row.name || '',
+      title: row.title || '',
       intro: row.intro || '',
       image: row.image || '',
       team_level: row.team_level ?? 1,
@@ -68,6 +78,7 @@ export default function CoachManage() {
     }
     const body = {
       name: form.name.trim(),
+      title: form.title.trim(),
       intro: form.intro.trim(),
       image: imageUrl,
       team_level: Number(form.team_level),
@@ -114,9 +125,8 @@ export default function CoachManage() {
               <tr>
                 <th>Photo</th>
                 <th>Name</th>
+                <th>Title</th>
                 <th>Intro</th>
-                <th>Level</th>
-                <th>Source</th>
                 <th>Order</th>
                 <th>Active</th>
                 <th className="actions">Actions</th>
@@ -127,9 +137,8 @@ export default function CoachManage() {
                 <tr key={row.id}>
                   <td className="img-cell">{row.image ? <img src={row.image} alt="" /> : '-'}</td>
                   <td>{row.name}</td>
-                  <td>{row.intro?.slice(0, 40)}{row.intro?.length > 40 ? '…' : ''}</td>
-                  <td>{row.team_level}</td>
-                  <td>{row.source || '-'}</td>
+                  <td>{row.title || '—'}</td>
+                  <td>{row.intro?.slice(0, 50)}{row.intro?.length > 50 ? '…' : ''}</td>
                   <td>{row.sort_order}</td>
                   <td>{row.is_active ? 'Yes' : 'No'}</td>
                   <td className="actions">
@@ -158,7 +167,8 @@ export default function CoachManage() {
                 {form.image && !imageFile && <div className="upload-preview"><img src={form.image} alt="" /></div>}
               </label>
               <label>Name <input type="text" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} required /></label>
-              <label>Intro <textarea value={form.intro} onChange={(e) => setForm((f) => ({ ...f, intro: e.target.value }))} rows={3} /></label>
+              <label>Title <input type="text" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="e.g. Head Coach" /></label>
+              <label>Intro <textarea value={form.intro} onChange={(e) => setForm((f) => ({ ...f, intro: e.target.value }))} rows={6} placeholder="文字介绍，可多行" /></label>
               <label>Team Level <select value={form.team_level} onChange={(e) => setForm((f) => ({ ...f, team_level: e.target.value }))}>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
