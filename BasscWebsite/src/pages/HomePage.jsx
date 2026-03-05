@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import HeroCarousel from '../components/HeroCarousel';
 import BoardSection from '../components/BoardSection';
 import IntroductionCarousel from '../components/IntroductionCarousel';
@@ -59,6 +60,7 @@ export default function HomePage() {
         <main className="homepage-loading">
           <p>Loading...</p>
         </main>
+        <Footer />
         <TryOutModal open={tryOutOpen} onClose={() => setTryOutOpen(false)} />
       </>
     );
@@ -77,6 +79,7 @@ export default function HomePage() {
         <ClassSchedule classes={data.classes} />
         <NewsList newsList={data.newsList} />
       </main>
+      <Footer />
       <TryOutModal open={tryOutOpen} onClose={() => setTryOutOpen(false)} />
     </>
   );

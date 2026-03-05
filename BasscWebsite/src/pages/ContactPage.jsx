@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import TryOutModal from '../components/TryOutModal';
 import { fetchContactInfo } from '../api';
 import './ContactPage.css';
@@ -69,6 +70,7 @@ export default function ContactPage() {
           )}
         </div>
       </main>
+      <Footer />
       <TryOutModal open={tryOutOpen} onClose={() => setTryOutOpen(false)} />
     </>
   );

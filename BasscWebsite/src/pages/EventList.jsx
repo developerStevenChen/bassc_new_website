@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { fetchEvents } from '../api';
 
 export default function EventList() {
@@ -77,6 +78,7 @@ export default function EventList() {
           )}
         </div>
       </main>
+      <Footer />
 
       {selectedEvent && (
         <div

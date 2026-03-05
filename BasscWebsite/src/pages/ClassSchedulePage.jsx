@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import ClassSchedule from '../components/ClassSchedule';
 import { fetchClasses } from '../api';
 
@@ -47,6 +48,7 @@ export default function ClassSchedulePage() {
           <ClassSchedule classes={list} />
         )}
       </main>
+      <Footer />
     </>
   );
 }

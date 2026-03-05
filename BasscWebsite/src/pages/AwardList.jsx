@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { fetchAwards } from '../api';
 
 const EXTRA_IMAGE_KEYS = ['image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6'];
@@ -75,6 +76,7 @@ export default function AwardList() {
           )}
         </div>
       </main>
+      <Footer />
 
       {selectedAward && (
         <div

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function PlaceholderPage({ title }) {
   return (
@@ -10,6 +11,7 @@ export default function PlaceholderPage({ title }) {
         <p>Coming soon.</p>
         <Link to="/" className="placeholder-link">Back to Home</Link>
       </main>
+      <Footer />
     </>
   );
 }

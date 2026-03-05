@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { newsList as defaultNewsList } from '../data';
 import { API_BASE } from '../api';
 
@@ -41,6 +42,7 @@ export default function NewsDetail() {
       <>
         <Header />
         <main className="news-detail-empty"><p>Loading...</p></main>
+        <Footer />
       </>
     );
   }
@@ -53,6 +55,7 @@ export default function NewsDetail() {
           <p>News not found.</p>
           <Link to="/">Back to Home</Link>
         </div>
+        <Footer />
       </>
     );
   }
@@ -84,6 +87,7 @@ export default function NewsDetail() {
           )}
         </div>
       </article>
+      <Footer />
     </>
   );
 }

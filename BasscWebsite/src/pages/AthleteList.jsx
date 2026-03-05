@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { fetchAthletes } from '../api';
 
 export default function AthleteList() {
@@ -55,6 +56,7 @@ export default function AthleteList() {
           )}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

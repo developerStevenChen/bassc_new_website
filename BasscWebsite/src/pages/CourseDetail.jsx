@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import TryOutModal from '../components/TryOutModal';
 import { fetchCourseBySlug } from '../api';
 
@@ -35,6 +36,7 @@ export default function CourseDetail() {
         <main className="course-page course-page-empty">
           <p>Loading...</p>
         </main>
+        <Footer />
       </>
     );
   }
@@ -47,6 +49,7 @@ export default function CourseDetail() {
           <p>Course not found.</p>
           <Link to="/class">Back to Courses</Link>
         </main>
+        <Footer />
       </>
     );
   }
@@ -126,6 +129,7 @@ export default function CourseDetail() {
           )}
         </div>
       </main>
+      <Footer />
       <TryOutModal open={tryOutOpen} onClose={() => setTryOutOpen(false)} />
     </>
   );

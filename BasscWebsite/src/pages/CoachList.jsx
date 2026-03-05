@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { fetchCoaches } from '../api';
 
 export default function CoachList() {
@@ -52,6 +53,7 @@ export default function CoachList() {
           )}
         </div>
       </main>
+      <Footer />
     </>
   );
 }
